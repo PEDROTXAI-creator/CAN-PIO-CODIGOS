@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canópia Global - Jornal Acadêmico</title>
+    
+    <!-- Configuração do Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                dark: '#313B1D',   /* Verde Escuro */
+                light: '#E4E4E4',  /* Base Branca/Gelo */
+                text: '#1C1A17'    /* Preto suave para textos longos no claro */
+              }
+            },
+            fontFamily: {
+              sans: ['Arial', 'sans-serif'],
+              serif: ['"Times New Roman"', 'serif']
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Ícones Phosphor -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        body {
+            background-color: #E4E4E4;
+            color: #1C1A17;
+            overflow-x: hidden;
+        }
+
+        /* Animações e Transições suaves */
+        .cg-reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+        .cg-reveal.in { opacity: 1; transform: translateY(0); }
+        
+        .cg-card-hover { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .cg-card-hover:hover { transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(49, 59, 29, 0.2); }
+
+        /* Estilização do Menu Suspenso */
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu { display: none; }
+        
+        /* Oculta scrollbar mantendo funcionalidade */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #E4E4E4; }
+        ::-webkit-scrollbar-thumb { background: #313B1D; border-radius: 4px; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- CABEÇALHO -->
+    <header class="bg-brand-dark text-brand-light sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
+            
+            <!-- Logo e Título -->
+            <a href="#" class="flex items-center gap-3">
+                <img src="17 Sem Título_20260926192418.jpg" alt="Logo Canópia Global" class="h-12 w-12 rounded-full object-cover border border-brand-light">
+                <div class="font-serif">
+                    <h1 class="text-2xl md:text-3xl font-bold tracking-widest leading-none">CANÓPIA</h1>
+                    <span class="text-[0.65rem] md:text-xs font-sans tracking-[0.3em] uppercase opacity-90 block mt-1">Global</span>
+                </div>
+            </a>
+
+            <!-- Navegação Desktop -->
+            <nav class="hidden lg:flex items-center gap-6 font-sans text-sm font-medium">
+                <a href="#" class="hover:text-gray-300 transition-colors border-b-2 border-transparent hover:border-brand-light pb-1">Home</a>
+                <a href="#" class="hover:text-gray-300 transition-colors pb-1">Sobre Nós</a>
+                <a href="#" class="hover:text-gray-300 transition-colors pb-1">Serviços</a>
+                
+                <!-- Menu Suspenso: Editoriais -->
+                <div class="relative dropdown pb-1 cursor-pointer">
+                    <span class="flex items-center gap-1 hover:text-gray-300 transition-colors">Editoriais <i class="ph ph-caret-down"></i></span>
+                    <div class="dropdown-menu absolute top-full left-0 mt-2 w-48 bg-brand-dark border border-brand-light/20 rounded shadow-xl overflow-hidden">
+                        <ul class="flex flex-col py-2">
+                            <li><a href="#" class="block px-4 py-2 hover:bg-white/10 transition-colors">- Política</a></li>
+                            <li><a href="#" class="block px-4 py-2 hover:bg-white/10 transition-colors">- Economia</a></li>
+                            <li><a href="#" class="block px-4 py-2 hover:bg-white/10 transition-colors">- Mundo</a></li>
+                            <li><a href="#" class="block px-4 py-2 hover:bg-white/10 transition-colors">- Esportes</a></li>
+                            <li><a href="#" class="block px-4 py-2 hover:bg-white/10 transition-colors">- Cultura</a></li>
+                            <li><a href="#" class="block px-4 py-2 hover:bg-white/10 transition-colors">- Tecnologia</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <a href="#" class="hover:text-gray-300 transition-colors pb-1">Artigos</a>
+                <a href="#" class="hover:text-gray-300 transition-colors pb-1">Contato</a>
+                
+                <!-- Barra de Pesquisa com Filtro -->
+                <div class="relative flex items-center bg-brand-light rounded-sm px-2 py-1.5 w-48 xl:w-56">
+                    <input type="text" placeholder="Pesquisar..." class="bg-transparent border-none outline-none text-brand-dark text-xs w-full placeholder:text-brand-dark/60 font-sans">
+                    <button class="text-brand-dark hover:text-brand-dark/70 ml-1"><i class="ph ph-funnel"></i></button>
+                    <button class="text-brand-dark hover:text-brand-dark/70 ml-1"><i class="ph ph-magnifying-glass"></i></button>
+                </div>
+
+                <!-- Ações -->
+                <a href="#" class="flex items-center gap-1 hover:text-gray-300 transition-colors pb-1"><i class="ph ph-user-circle text-lg"></i> Login/Cadastro</a>
+                
+                <a href="https://forms.gle/exemplo" target="_blank" class="bg-[#8A151B] text-white px-5 py-2 font-bold rounded-sm hover:bg-[#6e1015] transition-colors shadow-md">
+                    Submeter Conteúdo
+                </a>
+            </nav>
+
+            <!-- Botão Menu Mobile -->
+            <button class="lg:hidden text-brand-light text-3xl" onclick="toggleMobileMenu()">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+
+        <!-- Menu Mobile (Oculto por padrão) -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-brand-dark border-t border-brand-light/20 px-4 py-4 space-y-4 font-sans text-brand-light">
+            <div class="relative flex items-center bg-brand-light rounded-sm px-2 py-2 mb-4">
+                <input type="text" placeholder="Pesquisar..." class="bg-transparent border-none outline-none text-brand-dark text-sm w-full placeholder:text-brand-dark/60">
+                <button class="text-brand-dark hover:text-brand-dark/70 ml-1"><i class="ph ph-funnel"></i></button>
+                <button class="text-brand-dark ml-2"><i class="ph ph-magnifying-glass"></i></button>
+            </div>
+            <a href="#" class="block font-serif text-lg border-b border-white/10 pb-2">Home</a>
+            <a href="#" class="block font-serif text-lg border-b border-white/10 pb-2">Sobre Nós</a>
+            <a href="#" class="block font-serif text-lg border-b border-white/10 pb-2">Serviços</a>
+            <div class="border-b border-white/10 pb-2">
+                <span class="block font-serif text-lg mb-2">Editoriais</span>
+                <div class="pl-4 space-y-2 text-sm text-brand-light/80">
+                    <a href="#" class="block">- Política</a>
+                    <a href="#" class="block">- Economia</a>
+                    <a href="#" class="block">- Mundo</a>
+                    <a href="#" class="block">- Esportes</a>
+                    <a href="#" class="block">- Cultura</a>
+                    <a href="#" class="block">- Tecnologia</a>
+                </div>
+            </div>
+            <a href="#" class="block font-serif text-lg border-b border-white/10 pb-2">Artigos</a>
+            <a href="#" class="block font-serif text-lg border-b border-white/10 pb-2">Contato</a>
+            <div class="pt-2 flex justify-between items-center">
+                <a href="#" class="flex items-center gap-2 font-serif"><i class="ph ph-user-circle text-2xl"></i> Login/Cadastro</a>
+                <a href="https://forms.gle/exemplo" target="_blank" class="bg-[#8A151B] text-white px-4 py-2 font-bold rounded-sm text-sm">Submeter Conteúdo</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="w-full pb-16">
+        
+        <!-- Principais Notícias -->
+        <section class="max-w-7xl mx-auto px-4 md:px-6 pt-10 pb-8">
+            <h2 class="font-serif text-3xl font-bold text-brand-dark mb-6 cg-reveal">Principais Notícias</h2>
+            
+            <!-- Carrossel Placeholder -->
+            <div class="w-full h-[50vh] md:h-[65vh] bg-gray-300 rounded-3xl relative overflow-hidden cg-reveal shadow-lg group">
+                <!-- Imagem Placeholder -->
+                <div class="absolute inset-0 bg-gray-400">
+                    <!-- img src="banner.jpg" class="w-full h-full object-cover" -->
+                </div>
+                
+                <!-- Setas de navegação -->
+                <button class="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-black/30 hover:bg-black/50 rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i class="ph ph-caret-left text-2xl"></i>
+                </button>
+                <button class="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-black/30 hover:bg-black/50 rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i class="ph ph-caret-right text-2xl"></i>
+                </button>
+
+                <!-- Dots de paginação -->
+                <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+                    <span class="w-3 h-3 rounded-full bg-brand-dark"></span>
+                    <span class="w-3 h-3 rounded-full bg-gray-400"></span>
+                    <span class="w-3 h-3 rounded-full bg-gray-400"></span>
+                    <span class="w-3 h-3 rounded-full bg-gray-400"></span>
+                    <span class="w-3 h-3 rounded-full bg-gray-400"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Outras Notícias -->
+        <section class="max-w-7xl mx-auto px-4 md:px-6 py-8">
+            <h2 class="font-serif text-2xl font-bold text-brand-dark mb-6 cg-reveal">Outras Notícias</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <!-- Card Notícia 1 -->
+                <div class="flex flex-col cg-reveal cg-card-hover cursor-pointer">
+                    <div class="bg-[#d1d1d1] h-40 rounded-2xl mb-3 shadow-inner"></div>
+                    <h3 class="font-sans font-medium text-brand-dark text-sm md:text-base leading-tight">Título da notícia secundária vai aparecer aqui nesta área...</h3>
+                </div>
+                <!-- Card Notícia 2 -->
+                <div class="flex flex-col cg-reveal cg-card-hover cursor-pointer" style="transition-delay: 100ms;">
+                    <div class="bg-[#d1d1d1] h-40 rounded-2xl mb-3 shadow-inner"></div>
+                    <h3 class="font-sans font-medium text-brand-dark text-sm md:text-base leading-tight">Análise do cenário internacional na economia global...</h3>
+                </div>
+                <!-- Card Notícia 3 -->
+                <div class="flex flex-col cg-reveal cg-card-hover cursor-pointer" style="transition-delay: 200ms;">
+                    <div class="bg-[#d1d1d1] h-40 rounded-2xl mb-3 shadow-inner"></div>
+                    <h3 class="font-sans font-medium text-brand-dark text-sm md:text-base leading-tight">Avanços tecnológicos e seus impactos na sociedade moderna...</h3>
+                </div>
+                <!-- Card Notícia 4 -->
+                <div class="flex flex-col cg-reveal cg-card-hover cursor-pointer" style="transition-delay: 300ms;">
+                    <div class="bg-[#d1d1d1] h-40 rounded-2xl mb-3 shadow-inner"></div>
+                    <h3 class="font-sans font-medium text-brand-dark text-sm md:text-base leading-tight">Políticas públicas de sustentabilidade: um panorama atual...</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Explorar -->
+        <section class="max-w-5xl mx-auto px-4 md:px-6 py-12">
+            <h2 class="font-serif text-3xl font-bold text-brand-dark text-center mb-10 cg-reveal">Explorar</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <a href="#" class="flex flex-col items-center cg-reveal cg-card-hover group">
+                    <div class="bg-[#d1d1d1] w-full aspect-square rounded-3xl mb-4 flex items-center justify-center group-hover:bg-[#c2c2c2] transition-colors">
+                        <i class="ph ph-books text-5xl text-brand-dark/50"></i>
+                    </div>
+                    <span class="font-serif text-lg text-brand-dark font-medium">Projetos Acadêmico</span>
+                </a>
+                <a href="#" class="flex flex-col items-center cg-reveal cg-card-hover group" style="transition-delay: 100ms;">
+                    <div class="bg-[#d1d1d1] w-full aspect-square rounded-3xl mb-4 flex items-center justify-center group-hover:bg-[#c2c2c2] transition-colors">
+                        <i class="ph ph-microphone-stage text-5xl text-brand-dark/50"></i>
+                    </div>
+                    <span class="font-serif text-lg text-brand-dark font-medium">Podcast</span>
+                </a>
+                <a href="#" class="flex flex-col items-center cg-reveal cg-card-hover group" style="transition-delay: 200ms;">
+                    <div class="bg-[#d1d1d1] w-full aspect-square rounded-3xl mb-4 flex items-center justify-center group-hover:bg-[#c2c2c2] transition-colors">
+                        <i class="ph ph-users-three text-5xl text-brand-dark/50"></i>
+                    </div>
+                    <span class="font-serif text-lg text-brand-dark font-medium">CARIAP</span>
+                </a>
+                <a href="#" class="flex flex-col items-center cg-reveal cg-card-hover group" style="transition-delay: 300ms;">
+                    <div class="bg-[#d1d1d1] w-full aspect-square rounded-3xl mb-4 flex items-center justify-center group-hover:bg-[#c2c2c2] transition-colors">
+                        <i class="ph ph-info text-5xl text-brand-dark/50"></i>
+                    </div>
+                    <span class="font-serif text-lg text-brand-dark font-medium">Sobre nós</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-brand-dark text-brand-light py-12 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 items-center">
+            
+            <!-- Serviços -->
+            <div class="text-center md:text-left">
+                <h3 class="font-serif text-xl font-bold mb-4">Serviços</h3>
+                <ul class="space-y-2 font-sans text-sm text-brand-light/80">
+                    <li><a href="#" class="hover:text-brand-light transition-colors">Publicação de Artigos</a></li>
+                    <li><a href="#" class="hover:text-brand-light transition-colors">Mural de Vagas</a></li>
+                    <li><a href="#" class="hover:text-brand-light transition-colors">Eventos Acadêmicos</a></li>
+                    <li><a href="#" class="hover:text-brand-light transition-colors">Suporte ao Autor</a></li>
+                </ul>
+            </div>
+
+            <!-- Logo Central -->
+            <div class="flex justify-center">
+                <div class="border-2 border-brand-light p-4 rounded-xl flex items-center justify-center w-32 h-32 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
+                    <img src="17 Sem Título_20260926192418.jpg" alt="Logo Canópia Global" class="max-w-full max-h-full rounded-md">
+                </div>
+            </div>
+
+            <!-- Contatos e Redes Sociais -->
+            <div class="text-center md:text-right">
+                <h3 class="font-serif text-xl font-bold mb-4">Contatos</h3>
+                <div class="flex flex-col items-center md:items-end space-y-3 font-sans text-sm text-brand-light/80">
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-tiktok-logo text-xl"></i> @canopiaglobal</a>
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-instagram-logo text-xl"></i> /canopiaglobal</a>
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-x-logo text-xl"></i> @canopiaglobal</a>
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-facebook-logo text-xl"></i> /canopiaglobal</a>
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-whatsapp-logo text-xl"></i> (00) 00000-0000</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Scripts de Interatividade -->
+    <script>
+        // Função para Menu Mobile
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Animação Reveal nos elementos ao rolar a página
+        document.addEventListener('DOMContentLoaded', function () {
+            var items = document.querySelectorAll('.cg-reveal');
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) { 
+                    if (e.isIntersecting) {
+                        e.target.classList.add('in'); 
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            items.forEach(function (el) { 
+                io.observe(el); 
+            });
+        });
+    </script>
+</body>
+</html>
