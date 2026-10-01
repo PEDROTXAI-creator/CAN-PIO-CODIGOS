@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - CARIAP | Canópia Global</title>
+    
+    <!-- Configuração do Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                dark: '#313B1D',   /* Verde Escuro */
+                light: '#E4E4E4',  /* Base Branca/Gelo */
+                text: '#1C1A17'    /* Preto suave */
+              }
+            },
+            fontFamily: {
+              sans: ['Arial', 'sans-serif'],
+              serif: ['"Times New Roman"', 'serif']
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Ícones Phosphor -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        body {
+            background-color: #E4E4E4;
+            color: #1C1A17;
+            overflow-x: hidden;
+        }
+
+        /* Estilização do Menu Suspenso */
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu { display: none; }
+        
+        /* Customização do Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #E4E4E4; }
+        ::-webkit-scrollbar-thumb { background: #313B1D; border-radius: 4px; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- CABEÇALHO -->
+    <header class="bg-brand-dark text-brand-light sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
+            
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="17 Sem Título_20260926192418.jpg" alt="Logo Canópia Global" class="h-12 w-12 rounded-full object-cover border border-brand-light">
+                <div class="font-serif">
+                    <h1 class="text-2xl md:text-3xl font-bold tracking-widest leading-none">CANÓPIA</h1>
+                    <span class="text-[0.65rem] md:text-xs font-sans tracking-[0.3em] uppercase opacity-90 block mt-1">Global</span>
+                </div>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-6 font-sans text-sm font-medium">
+                <a href="index.html" class="hover:text-gray-300 transition-colors pb-1">Home</a>
+                <a href="#" class="hover:text-gray-300 transition-colors border-b-2 border-brand-light pb-1">Sobre Nós</a>
+                <a href="#" class="hover:text-gray-300 transition-colors pb-1">Serviços</a>
+                
+                <div class="relative dropdown pb-1 cursor-pointer">
+                    <span class="flex items-center gap-1 hover:text-gray-300 transition-colors">Editoriais <i class="ph ph-caret-down"></i></span>
+                    <div class="dropdown-menu absolute top-full left-0 mt-2 w-48 bg-brand-dark border border-brand-light/20 rounded shadow-xl overflow-hidden">
+                        <ul class="flex flex-col py-2">
+                            <li><a href="#" class="block px-4 py-2 hover:bg-white/10 transition-colors">- Política</a></li>
+                            <li><a href="#" class="block px-4 py-2 hover:bg-white/10 transition-colors">- Economia</a></li>
+                            <li><a href="#" class="block px-4 py-2 hover:bg-white/10 transition-colors">- Mundo</a></li>
+                            <li><a href="#" class="block px-4 py-2 hover:bg-white/10 transition-colors">- Esportes</a></li>
+                            <li><a href="#" class="block px-4 py-2 hover:bg-white/10 transition-colors">- Cultura</a></li>
+                            <li><a href="#" class="block px-4 py-2 hover:bg-white/10 transition-colors">- Tecnologia</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <a href="#" class="hover:text-gray-300 transition-colors pb-1">Artigos</a>
+                <a href="#" class="hover:text-gray-300 transition-colors pb-1">Contato</a>
+                
+                <div class="relative flex items-center bg-brand-light rounded-sm px-2 py-1.5 w-48 xl:w-56">
+                    <input type="text" placeholder="Pesquisar..." class="bg-transparent border-none outline-none text-brand-dark text-xs w-full placeholder:text-brand-dark/60 font-sans">
+                    <button class="text-brand-dark hover:text-brand-dark/70 ml-1"><i class="ph ph-funnel"></i></button>
+                    <button class="text-brand-dark hover:text-brand-dark/70 ml-1"><i class="ph ph-magnifying-glass"></i></button>
+                </div>
+
+                <a href="#" class="flex items-center gap-1 hover:text-gray-300 transition-colors pb-1"><i class="ph ph-user-circle text-lg"></i> Login/Cadastro</a>
+                <a href="https://forms.gle/exemplo" target="_blank" class="bg-[#8A151B] text-white px-5 py-2 font-bold rounded-sm hover:bg-[#6e1015] transition-colors shadow-md">
+                    Submeter Conteúdo
+                </a>
+            </nav>
+
+            <button class="lg:hidden text-brand-light text-3xl" onclick="toggleMobileMenu()">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+
+        <div id="mobileMenu" class="hidden lg:hidden bg-brand-dark border-t border-brand-light/20 px-4 py-4 space-y-4 font-sans text-brand-light">
+            <a href="index.html" class="block font-serif text-lg border-b border-white/10 pb-2">Home</a>
+            <a href="#" class="block font-serif text-lg border-b border-white/10 pb-2">Sobre Nós</a>
+            <a href="#" class="block font-serif text-lg border-b border-white/10 pb-2">Artigos</a>
+            <a href="#" class="block font-serif text-lg border-b border-white/10 pb-2">Contato</a>
+        </div>
+    </header>
+
+    <!-- BANNER HERO PRINCIPAL -->
+    <section class="bg-brand-dark text-brand-light py-16 md:py-24 px-4 text-center border-b-4 border-[#8A151B]">
+        <div class="max-w-4xl mx-auto flex flex-col items-center">
+            <div class="w-16 h-16 md:w-20 md:h-20 bg-white/10 rounded-full flex items-center justify-center mb-6 border border-brand-light/30">
+                <i class="ph ph-users-three text-3xl md:text-4xl text-brand-light"></i>
+            </div>
+            <h1 class="font-serif text-4xl md:text-6xl font-bold tracking-wide mb-4">
+                CARIAP
+            </h1>
+            <p class="font-sans text-base md:text-xl text-brand-light/90 max-w-2xl font-normal leading-relaxed">
+                Centro Acadêmico de Relações Internacionais do Amapá — representação estudantil do curso de RI da UNIFAP.
+            </p>
+        </div>
+    </section>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-16 space-y-12">
+        
+        <!-- O que é o CARIAP? -->
+        <section class="space-y-4">
+            <div class="flex items-center gap-3">
+                <i class="ph ph-[#8A151B] ph-target text-2xl text-brand-dark"></i>
+                <h2 class="font-serif text-2xl md:text-3xl font-bold text-brand-dark">O que é o CARIAP?</h2>
+            </div>
+            <p class="font-sans text-base md:text-lg text-brand-text leading-relaxed pl-1">
+                O Centro Acadêmico de Relações Internacionais do Amapá (CARIAP) é a entidade de representação dos estudantes do curso de Relações Internacionais da Universidade Federal do Amapá (UNIFAP). O CARIAP atua na defesa dos interesses acadêmicos dos discentes, promove eventos, debates e atividades de extensão que fortalecem a formação internacionalista e a integração entre os alunos.
+            </p>
+        </section>
+
+        <!-- Missão -->
+        <section class="space-y-4">
+            <div class="flex items-center gap-3">
+                <i class="ph ph-heart text-2xl text-brand-dark"></i>
+                <h2 class="font-serif text-2xl md:text-3xl font-bold text-brand-dark">Missão</h2>
+            </div>
+            <ul class="space-y-3 font-sans text-base md:text-lg text-brand-text pl-2">
+                <li class="flex items-start gap-3">
+                    <span class="w-2 h-2 rounded-full bg-brand-dark mt-2.5 shrink-0"></span>
+                    <span>Representar os interesses dos estudantes de Relações Internacionais junto à universidade e à comunidade.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="w-2 h-2 rounded-full bg-brand-dark mt-2.5 shrink-0"></span>
+                    <span>Promover eventos acadêmicos, culturais e de extensão relacionados às relações internacionais.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="w-2 h-2 rounded-full bg-brand-dark mt-2.5 shrink-0"></span>
+                    <span>Fomentar o debate crítico sobre política internacional e questões regionais.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="w-2 h-2 rounded-full bg-brand-dark mt-2.5 shrink-0"></span>
+                    <span>Incentivar a produção acadêmica e a pesquisa entre os discentes.</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Fale com o CARIAP (Card de Ação) -->
+        <section class="bg-white/60 border border-brand-dark/10 rounded-2xl p-6 md:p-8 shadow-sm space-y-6">
+            <div>
+                <h3 class="font-serif text-2xl font-bold text-brand-dark mb-2">Fale com o CARIAP</h3>
+                <p class="font-sans text-sm md:text-base text-brand-text/80">
+                    Quer participar das atividades, propor projetos ou tirar dúvidas? Entre em contato.
+                </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-4">
+                <a href="mailto:contato@cariap.org" class="bg-brand-dark text-brand-light px-6 py-2.5 rounded-md font-sans text-sm font-bold flex items-center gap-2 hover:bg-brand-dark/90 transition-colors shadow">
+                    <i class="ph ph-envelope text-lg"></i> Email
+                </a>
+                <a href="https://instagram.com" target="_blank" class="bg-white text-brand-dark border border-brand-dark/30 px-6 py-2.5 rounded-md font-sans text-sm font-bold flex items-center gap-2 hover:bg-gray-100 transition-colors shadow-sm">
+                    <i class="ph ph-instagram-logo text-lg"></i> Instagram
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-brand-dark text-brand-light py-12 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 items-center">
+            
+            <div class="text-center md:text-left">
+                <h3 class="font-serif text-xl font-bold mb-4">Serviços</h3>
+                <ul class="space-y-2 font-sans text-sm text-brand-light/80">
+                    <li><a href="#" class="hover:text-brand-light transition-colors">Publicação de Artigos</a></li>
+                    <li><a href="#" class="hover:text-brand-light transition-colors">Mural de Vagas</a></li>
+                    <li><a href="#" class="hover:text-brand-light transition-colors">Eventos Acadêmicos</a></li>
+                    <li><a href="#" class="hover:text-brand-light transition-colors">Suporte ao Autor</a></li>
+                </ul>
+            </div>
+
+            <div class="flex justify-center">
+                <div class="border-2 border-brand-light p-4 rounded-xl flex items-center justify-center w-32 h-32 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
+                    <img src="17 Sem Título_20260926192418.jpg" alt="Logo Canópia Global" class="max-w-full max-h-full rounded-md">
+                </div>
+            </div>
+
+            <div class="text-center md:text-right">
+                <h3 class="font-serif text-xl font-bold mb-4">Contatos</h3>
+                <div class="flex flex-col items-center md:items-end space-y-3 font-sans text-sm text-brand-light/80">
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-tiktok-logo text-xl"></i> @canopiaglobal</a>
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-instagram-logo text-xl"></i> /canopiaglobal</a>
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-x-logo text-xl"></i> @canopiaglobal</a>
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-facebook-logo text-xl"></i> /canopiaglobal</a>
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-whatsapp-logo text-xl"></i> (00) 00000-0000</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
