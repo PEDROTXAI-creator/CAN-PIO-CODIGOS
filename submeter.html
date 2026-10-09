@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submeter Conteúdo - Canópia Global</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { brand: { dark: '#313B1D', light: '#E4E4E4', text: '#1C1A17' } },
+      fontFamily: { sans: ['Arial', 'sans-serif'], serif: ['"Times New Roman"', 'serif'] } } } }
+  </script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>body{background:#E4E4E4;color:#1C1A17}</style>
+</head>
+<body class="font-sans antialiased">
+  <header class="bg-brand-dark text-brand-light shadow-lg">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="font-serif text-2xl font-bold tracking-widest">CANÓPIA <span class="text-xs font-sans tracking-[0.3em] uppercase opacity-90">Global</span></a>
+      <a href="#" class="flex items-center gap-1 text-sm"><i class="ph ph-user-circle text-lg"></i> Login/Cadastro</a>
+    </div>
+  </header>
+
+  <main class="max-w-2xl mx-auto px-4 py-10">
+    <h1 class="font-serif text-3xl font-bold text-brand-dark mb-6">Publicar notícia</h1>
+
+    <p id="aviso" class="hidden mb-6 rounded-md bg-white border border-brand-dark/20 p-4 text-sm"></p>
+
+    <form id="form" class="space-y-5 bg-white/60 border border-brand-dark/10 rounded-2xl p-6" enctype="multipart/form-data">
+      <div><label class="block text-sm font-bold mb-1" for="titulo">Título</label>
+        <input id="titulo" name="titulo" required minlength="3" maxlength="150" class="w-full rounded-md border border-brand-dark/30 bg-white px-3 py-2"></div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div><label class="block text-sm font-bold mb-1" for="categoria">Categoria</label>
+          <select id="categoria" name="categoria" required class="w-full rounded-md border border-brand-dark/30 bg-white px-3 py-2"></select></div>
+        <div><label class="block text-sm font-bold mb-1" for="autor_nome">Autor (opcional)</label>
+          <input id="autor_nome" name="autor_nome" maxlength="80" placeholder="Padrão: seu nome" class="w-full rounded-md border border-brand-dark/30 bg-white px-3 py-2"></div>
+      </div>
+
+      <div><label class="block text-sm font-bold mb-1" for="resumo">Resumo</label>
+        <textarea id="resumo" name="resumo" required maxlength="500" rows="2" class="w-full rounded-md border border-brand-dark/30 bg-white px-3 py-2"></textarea></div>
+
+      <div><label class="block text-sm font-bold mb-1" for="conteudo">Conteúdo completo</label>
+        <textarea id="conteudo" name="conteudo" rows="8" class="w-full rounded-md border border-brand-dark/30 bg-white px-3 py-2"></textarea></div>
+
+      <div><label class="block text-sm font-bold mb-1" for="capa">Imagem de capa (JPG, PNG ou WebP, até 5 MB)</label>
+        <input id="capa" name="capa" type="file" accept="image/jpeg,image/png,image/webp" class="w-full text-sm"></div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div><label class="block text-sm font-bold mb-1" for="slot">Posição na home</label>
+          <select id="slot" name="slot" class="w-full rounded-md border border-brand-dark/30 bg-white px-3 py-2">
+            <option value="subnoticia">Subnotícia (cards menores)</option>
+            <option value="principal">Principal (banner)</option></select></div>
+        <div><label class="block text-sm font-bold mb-1" for="status">Status</label>
+          <select id="status" name="status" class="w-full rounded-md border border-brand-dark/30 bg-white px-3 py-2">
+            <option value="publicado">Publicar agora</option>
+            <option value="rascunho">Salvar como rascunho</option></select></div>
+      </div>
+
+      <button class="w-full bg-brand-dark text-brand-light font-bold py-3 rounded-md hover:bg-[#3f4c25] transition-colors">Publicar</button>
+    </form>
+  </main>
+
+  <script src="/js/auth-ui.js"></script>
+  <script>
+    const aviso = document.getElementById('aviso');
+    const msg = (t, erro) => { aviso.textContent = t; aviso.classList.remove('hidden'); aviso.classList.toggle('text-[#8A151B]', !!erro); };
+
+    fetch('/api/categorias').then(r => r.json()).then(cs => {
+      document.getElementById('categoria').replaceChildren(...cs.map(c => new Option(c.nome, c.slug)));
+    });
+
+    document.getElementById('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const resp = await fetch('/api/admin/noticias', { method: 'POST', body: new FormData(e.target) });
+      const json = await resp.json().catch(() => ({}));
+      if (resp.status === 401) return msg('Faça login com uma conta de administrador (Login/Cadastro, no topo).', true);
+      if (resp.status === 403) return msg('Sua conta não tem permissão para publicar.', true);
+      if (!resp.ok) return msg(json.detalhes?.map(d => `${d.campo}: ${d.mensagem}`).join(' · ') || json.erro || 'Erro ao publicar.', true);
+      msg('Notícia salva com sucesso!');
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
