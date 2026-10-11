@@ -6,16 +6,45 @@ media_folder: "uploads"
 public_folder: "/uploads"
 
 collections:
+  # COLEÇÃO 1: NOTÍCIAS
   - name: "noticias"
-    label: "Notícias e Artigos"
+    label: "Notícias"
     folder: "content/noticias"
     create: true
     slug: "{{slug}}"
     fields:
       - {label: "Título", name: "title", widget: "string"}
-      - {label: "Subtítulo", name: "summary", widget: "text"}
+      - {label: "Subtítulo / Resumo", name: "summary", widget: "text"}
       - {label: "Data", name: "date", widget: "datetime"}
       - {label: "Autor", name: "author", widget: "string"}
       - {label: "Categoria / Tema", name: "category", widget: "select", options: ["mundo", "politica", "economia", "esportes", "tecnologia", "cultura"]}
       - {label: "Imagem Principal", name: "image", widget: "image"}
       - {label: "Conteúdo da Notícia", name: "body", widget: "markdown"}
+
+  # COLEÇÃO 2: ARTIGOS (Sem seleção de tema)
+  - name: "artigos"
+    label: "Artigos"
+    folder: "content/artigos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Título do Artigo", name: "title", widget: "string"}
+      - {label: "Resumo", name: "summary", widget: "text"}
+      - {label: "Data de Publicação", name: "date", widget: "datetime"}
+      - {label: "Nome do Autor", name: "author", widget: "string"}
+      - {label: "Imagem / Capa", name: "image", widget: "image"}
+      - {label: "Texto do Artigo", name: "body", widget: "markdown"}
+
+  # COLEÇÃO 3: PODCASTS
+  - name: "podcasts"
+    label: "Podcasts"
+    folder: "content/podcasts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Título do Episódio", name: "title", widget: "string"}
+      - {label: "Número do Episódio", name: "episode", widget: "string"}
+      - {label: "Link do Vídeo no YouTube", name: "youtube_url", widget: "string"}
+      - {label: "Data", name: "date", widget: "datetime"}
+      - {label: "Descrição do Episódio", name: "summary", widget: "text"}
+      - {label: "Capa do Episódio", name: "image", widget: "image"}
