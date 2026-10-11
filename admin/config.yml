@@ -6,11 +6,11 @@ media_folder: "uploads"
 public_folder: "/uploads"
 
 collections:
-  # COLEÇÃO 1: NOTÍCIAS
   - name: "noticias"
     label: "Notícias"
-    folder: "content/noticias"
+    folder: "data/noticias"
     create: true
+    format: "json"
     slug: "{{slug}}"
     fields:
       - {label: "Título", name: "title", widget: "string"}
@@ -21,11 +21,11 @@ collections:
       - {label: "Imagem Principal", name: "image", widget: "image"}
       - {label: "Conteúdo da Notícia", name: "body", widget: "markdown"}
 
-  # COLEÇÃO 2: ARTIGOS (Sem seleção de tema)
   - name: "artigos"
     label: "Artigos"
-    folder: "content/artigos"
+    folder: "data/artigos"
     create: true
+    format: "json"
     slug: "{{slug}}"
     fields:
       - {label: "Título do Artigo", name: "title", widget: "string"}
@@ -35,11 +35,11 @@ collections:
       - {label: "Imagem / Capa", name: "image", widget: "image"}
       - {label: "Texto do Artigo", name: "body", widget: "markdown"}
 
-  # COLEÇÃO 3: PODCASTS
   - name: "podcasts"
     label: "Podcasts"
-    folder: "content/podcasts"
+    folder: "data/podcasts"
     create: true
+    format: "json"
     slug: "{{slug}}"
     fields:
       - {label: "Título do Episódio", name: "title", widget: "string"}
