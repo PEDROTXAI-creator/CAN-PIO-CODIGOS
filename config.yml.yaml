@@ -1,0 +1,21 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "noticias"
+    label: "Notícias e Artigos"
+    folder: "content/noticias"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Subtítulo", name: "summary", widget: "text"}
+      - {label: "Data", name: "date", widget: "datetime"}
+      - {label: "Autor", name: "author", widget: "string"}
+      - {label: "Categoria / Tema", name: "category", widget: "select", options: ["mundo", "politica", "economia", "esportes", "tecnologia", "cultura"]}
+      - {label: "Imagem Principal", name: "image", widget: "image"}
+      - {label: "Conteúdo da Notícia", name: "body", widget: "markdown"}
