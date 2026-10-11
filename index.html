@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Canópia Global</title>
+    
+    <!-- Configuração do Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                dark: '#313B1D',   /* Verde Escuro */
+                light: '#E4E4E4',  /* Base Branca/Gelo */
+                text: '#1C1A17'    /* Preto suave */
+              }
+            },
+            fontFamily: {
+              sans: ['Arial', 'sans-serif'],
+              serif: ['"Times New Roman"', 'serif']
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Ícones Phosphor -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        body {
+            background-color: #E4E4E4;
+            color: #1C1A17;
+            overflow-x: hidden;
+        }
+
+        /* Customização do Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #E4E4E4; }
+        ::-webkit-scrollbar-thumb { background: #313B1D; border-radius: 4px; }
+
+        /* Estilo para Botão de Filtro Ativo */
+        .filter-btn.active {
+            background-color: #313B1D;
+            color: #E4E4E4;
+            border-color: #313B1D;
+        }
+
+        /* Estilo para Botão de Paginação Ativo */
+        .page-btn.active {
+            background-color: #313B1D;
+            color: #E4E4E4;
+            border-color: #313B1D;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- CABEÇALHO -->
+    <header class="bg-brand-dark text-brand-light sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
+            
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="17 Sem Título_20260926192418.jpg" alt="Logo Canópia Global" class="h-12 w-12 rounded-full object-cover border border-brand-light">
+                <div class="font-serif">
+                    <h1 class="text-2xl md:text-3xl font-bold tracking-widest leading-none">CANÓPIA</h1>
+                    <span class="text-[0.65rem] md:text-xs font-sans tracking-[0.3em] uppercase opacity-90 block mt-1">Global</span>
+                </div>
+            </a>
+
+            <!-- Navegação Desktop -->
+            <nav class="hidden lg:flex items-center gap-6 font-sans text-sm font-medium">
+                <a href="index.html" class="hover:text-gray-300 transition-colors pb-1">Home</a>
+                <a href="sobre.html" class="hover:text-gray-300 transition-colors pb-1">Sobre Nós</a>
+                <a href="servicos.html" class="hover:text-gray-300 transition-colors pb-1">Serviços</a>
+                <a href="noticias.html" class="hover:text-gray-300 transition-colors pb-1">Notícias</a>
+                <a href="artigos.html" class="hover:text-gray-300 transition-colors border-b-2 border-brand-light pb-1">Artigos</a>
+                
+                <a href="https://forms.gle/exemplo" target="_blank" class="bg-[#8A151B] text-white px-5 py-2 font-bold rounded-sm hover:bg-[#6e1015] transition-colors shadow-md">
+                    Submeter Conteúdo
+                </a>
+            </nav>
+
+            <!-- Botão Menu Mobile -->
+            <button class="lg:hidden text-brand-light text-3xl" onclick="toggleMobileMenu()">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-brand-dark border-t border-brand-light/20 px-4 py-4 space-y-4 font-sans text-brand-light">
+            <a href="index.html" class="block font-serif text-lg border-b border-white/10 pb-2">Home</a>
+            <a href="sobre.html" class="block font-serif text-lg border-b border-white/10 pb-2">Sobre Nós</a>
+            <a href="noticias.html" class="block font-serif text-lg border-b border-white/10 pb-2">Notícias</a>
+            <a href="artigos.html" class="block font-serif text-lg border-b border-white/10 pb-2">Artigos</a>
+            <div class="pt-2 flex justify-end">
+                <a href="https://forms.gle/exemplo" target="_blank" class="bg-[#8A151B] text-white px-4 py-2 font-bold rounded-sm text-sm">Submeter Conteúdo</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="w-full pb-16">
+        
+        <!-- Principais Notícias -->
+        <section class="max-w-7xl mx-auto px-4 md:px-6 pt-10 pb-8">
+            <h2 class="font-serif text-3xl font-bold text-brand-dark mb-6 cg-reveal">Principais Notícias</h2>
+            
+            <!-- PASSO 2: Carrossel com id="bannerPrincipal" -->
+            <div id="bannerPrincipal" class="w-full h-[50vh] md:h-[65vh] bg-gray-300 rounded-3xl relative overflow-hidden cg-reveal shadow-lg group">
+                <!-- Imagem Placeholder -->
+                <div class="absolute inset-0 bg-gray-400">
+                    <!-- img src="banner.jpg" class="w-full h-full object-cover" -->
+                </div>
+                
+                <!-- Setas de navegação -->
+                <button class="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-black/30 hover:bg-black/50 rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i class="ph ph-caret-left text-2xl"></i>
+                </button>
+                <button class="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-black/30 hover:bg-black/50 rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i class="ph ph-caret-right text-2xl"></i>
+                </button>
+
+                <!-- Dots de paginação -->
+                <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+                    <span class="w-3 h-3 rounded-full bg-brand-dark"></span>
+                    <span class="w-3 h-3 rounded-full bg-gray-400"></span>
+                    <span class="w-3 h-3 rounded-full bg-gray-400"></span>
+                    <span class="w-3 h-3 rounded-full bg-gray-400"></span>
+                    <span class="w-3 h-3 rounded-full bg-gray-400"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Outras Notícias -->
+        <section class="max-w-7xl mx-auto px-4 md:px-6 py-8">
+            <h2 class="font-serif text-2xl font-bold text-brand-dark mb-6 cg-reveal">Outras Notícias</h2>
+            
+            <!-- PASSO 2: Grid com id="gridSubnoticias" -->
+            <div id="gridSubnoticias" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <!-- Card Notícia 1 -->
+                <div class="flex flex-col cg-reveal cg-card-hover cursor-pointer">
+                    <div class="bg-[#d1d1d1] h-40 rounded-2xl mb-3 shadow-inner"></div>
+                    <h3 class="font-sans font-medium text-brand-dark text-sm md:text-base leading-tight">Título da notícia secundária vai aparecer aqui nesta área...</h3>
+                </div>
+                <!-- Card Notícia 2 -->
+                <div class="flex flex-col cg-reveal cg-card-hover cursor-pointer" style="transition-delay: 100ms;">
+                    <div class="bg-[#d1d1d1] h-40 rounded-2xl mb-3 shadow-inner"></div>
+                    <h3 class="font-sans font-medium text-brand-dark text-sm md:text-base leading-tight">Análise do cenário internacional na economia global...</h3>
+                </div>
+                <!-- Card Notícia 3 -->
+                <div class="flex flex-col cg-reveal cg-card-hover cursor-pointer" style="transition-delay: 200ms;">
+                    <div class="bg-[#d1d1d1] h-40 rounded-2xl mb-3 shadow-inner"></div>
+                    <h3 class="font-sans font-medium text-brand-dark text-sm md:text-base leading-tight">Avanços tecnológicos e seus impactos na sociedade moderna...</h3>
+                </div>
+                <!-- Card Notícia 4 -->
+                <div class="flex flex-col cg-reveal cg-card-hover cursor-pointer" style="transition-delay: 300ms;">
+                    <div class="bg-[#d1d1d1] h-40 rounded-2xl mb-3 shadow-inner"></div>
+                    <h3 class="font-sans font-medium text-brand-dark text-sm md:text-base leading-tight">Políticas públicas de sustentabilidade: um panorama atual...</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Explorar -->
+        <section class="max-w-5xl mx-auto px-4 md:px-6 py-12">
+            <h2 class="font-serif text-3xl font-bold text-brand-dark text-center mb-10 cg-reveal">Explorar</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <a href="#" class="flex flex-col items-center cg-reveal cg-card-hover group">
+                    <div class="bg-[#d1d1d1] w-full aspect-square rounded-3xl mb-4 flex items-center justify-center group-hover:bg-[#c2c2c2] transition-colors">
+                        <i class="ph ph-books text-5xl text-brand-dark/50"></i>
+                    </div>
+                    <span class="font-serif text-lg text-brand-dark font-medium">Projetos Acadêmico</span>
+                </a>
+                <a href="#" class="flex flex-col items-center cg-reveal cg-card-hover group" style="transition-delay: 100ms;">
+                    <div class="bg-[#d1d1d1] w-full aspect-square rounded-3xl mb-4 flex items-center justify-center group-hover:bg-[#c2c2c2] transition-colors">
+                        <i class="ph ph-microphone-stage text-5xl text-brand-dark/50"></i>
+                    </div>
+                    <span class="font-serif text-lg text-brand-dark font-medium">Podcast</span>
+                </a>
+                <a href="#" class="flex flex-col items-center cg-reveal cg-card-hover group" style="transition-delay: 200ms;">
+                    <div class="bg-[#d1d1d1] w-full aspect-square rounded-3xl mb-4 flex items-center justify-center group-hover:bg-[#c2c2c2] transition-colors">
+                        <i class="ph ph-users-three text-5xl text-brand-dark/50"></i>
+                    </div>
+                    <span class="font-serif text-lg text-brand-dark font-medium">CARIAP</span>
+                </a>
+                <a href="#" class="flex flex-col items-center cg-reveal cg-card-hover group" style="transition-delay: 300ms;">
+                    <div class="bg-[#d1d1d1] w-full aspect-square rounded-3xl mb-4 flex items-center justify-center group-hover:bg-[#c2c2c2] transition-colors">
+                        <i class="ph ph-info text-5xl text-brand-dark/50"></i>
+                    </div>
+                    <span class="font-serif text-lg text-brand-dark font-medium">Sobre nós</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-brand-dark text-brand-light py-12 px-6 border-t border-brand-light/10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 items-center">
+            
+            <div class="text-center md:text-left">
+                <h3 class="font-serif text-xl font-bold mb-4">Serviços</h3>
+                <ul class="space-y-2 font-sans text-sm text-brand-light/80">
+                    <li class="cursor-default">Publicação de Artigos</li>
+                    <li class="cursor-default">Mural de Vagas</li>
+                    <li class="cursor-default">Eventos Acadêmicos</li>
+                    <li class="cursor-default">Suporte ao Autor</li>
+                </ul>
+            </div>
+
+            <div class="flex justify-center">
+                <div class="border-2 border-brand-light p-4 rounded-xl flex items-center justify-center w-32 h-32 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
+                    <img src="17 Sem Título_20260926192418.jpg" alt="Logo Canópia Global" class="max-w-full max-h-full rounded-md">
+                </div>
+            </div>
+
+            <div class="text-center md:text-right">
+                <h3 class="font-serif text-xl font-bold mb-4">Contatos</h3>
+                <div class="flex flex-col items-center md:items-end space-y-3 font-sans text-sm text-brand-light/80">
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-tiktok-logo text-xl"></i> @canopiaglobal</a>
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-instagram-logo text-xl"></i> /canopiaglobal</a>
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-x-logo text-xl"></i> @canopiaglobal</a>
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-facebook-logo text-xl"></i> /canopiaglobal</a>
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-whatsapp-logo text-xl"></i> (00) 00000-0000</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- PASSO 3: MODAL DO ADMINISTRADOR -->
+    <div id="adminOverlay"
+         class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"
+         aria-hidden="true">
+
+        <div id="adminBox"
+             role="dialog" aria-modal="true" aria-labelledby="adminTitulo"
+             class="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-brand-light text-brand-text rounded-2xl shadow-2xl scale-95 opacity-0 transition duration-300">
+
+            <button type="button" onclick="fecharAdmin()" aria-label="Fechar"
+                    class="absolute top-3 right-3 text-brand-dark/60 hover:text-brand-dark text-2xl transition-colors">
+                <i class="ph ph-x"></i>
+            </button>
+
+            <!-- Tela 1: senha -->
+            <div id="adminLogin" class="p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-brand-dark text-brand-light rounded-full p-2 text-xl"><i class="ph ph-lock-key"></i></span>
+                    <h2 id="adminTitulo" class="font-serif text-2xl font-bold text-brand-dark">Acesso da administração</h2>
+                </div>
+
+                <label for="adminSenha" class="block text-sm font-medium text-brand-dark mb-1">Senha</label>
+                <input id="adminSenha" type="password" autocomplete="off"
+                       class="w-full rounded-md border border-brand-dark/30 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-brand-dark">
+                <p id="adminErro" class="hidden text-sm text-[#8A151B] mt-2">Senha incorreta. Tente novamente.</p>
+
+                <button type="button" onclick="entrarAdmin()"
+                        class="mt-6 w-full bg-brand-dark text-brand-light font-bold py-2.5 rounded-md hover:bg-[#3f4c25] transition-colors">
+                    Entrar
+                </button>
+            </div>
+
+            <!-- Tela 2: painel -->
+            <div id="adminPainel" class="hidden p-8">
+                <h2 class="font-serif text-2xl font-bold text-brand-dark mb-6">Publicar notícia</h2>
+
+                <div class="space-y-5">
+                    <div>
+                        <label for="nTitulo" class="block text-sm font-medium text-brand-dark mb-1">Título</label>
+                        <input id="nTitulo" type="text" maxlength="120"
+                               class="w-full rounded-md border border-brand-dark/30 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-brand-dark">
+                    </div>
+
+                    <div>
+                        <span class="block text-sm font-medium text-brand-dark mb-1">Imagem de capa</span>
+                        <label for="nImagem"
+                               class="flex flex-col items-center justify-center gap-1 h-32 rounded-md border-2 border-dashed border-brand-dark/40 bg-white/60 cursor-pointer hover:bg-white transition-colors overflow-hidden">
+                            <img id="nPreview" alt="" class="hidden h-full w-full object-cover">
+                            <span id="nImagemTexto" class="flex flex-col items-center text-brand-dark/70 text-sm">
+                                <i class="ph ph-upload-simple text-3xl"></i>
+                                Clique para escolher uma imagem
+                            </span>
+                        </label>
+                        <input id="nImagem" type="file" accept="image/*" class="sr-only">
+                    </div>
+
+                    <div>
+                        <label for="nResumo" class="block text-sm font-medium text-brand-dark mb-1">Resumo / conteúdo</label>
+                        <textarea id="nResumo" rows="4"
+                                  class="w-full rounded-md border border-brand-dark/30 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-brand-dark resize-y"></textarea>
+                    </div>
+
+                    <fieldset>
+                        <legend class="block text-sm font-medium text-brand-dark mb-2">Relevância</legend>
+                        <div class="grid sm:grid-cols-2 gap-3">
+                            <label class="flex items-start gap-2 rounded-md border border-brand-dark/30 bg-white p-3 cursor-pointer has-[:checked]:border-brand-dark has-[:checked]:ring-2 has-[:checked]:ring-brand-dark">
+                                <input type="radio" name="nRelevancia" value="principal" class="mt-1 accent-[#313B1D]" checked>
+                                <span class="text-sm"><b>Notícia principal do dia</b><br>Vai para o banner grande</span>
+                            </label>
+                            <label class="flex items-start gap-2 rounded-md border border-brand-dark/30 bg-white p-3 cursor-pointer has-[:checked]:border-brand-dark has-[:checked]:ring-2 has-[:checked]:ring-brand-dark">
+                                <input type="radio" name="nRelevancia" value="sub" class="mt-1 accent-[#313B1D]">
+                                <span class="text-sm"><b>Subnotícia</b><br>Vai para os cards menores</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <p id="nErro" class="hidden text-sm text-[#8A151B]"></p>
+
+                    <button type="button" onclick="publicarNoticia()"
+                            class="w-full bg-brand-dark text-brand-light font-bold py-3 rounded-md hover:bg-[#3f4c25] transition-colors flex items-center justify-center gap-2">
+                        <i class="ph ph-paper-plane-tilt"></i> Publicar notícia
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Aviso de confirmação -->
+    <div id="adminToast"
+         class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[110] bg-brand-dark text-brand-light px-5 py-3 rounded-md shadow-xl opacity-0 translate-y-4 pointer-events-none transition duration-300">
+        Notícia publicada
+    </div>
+
+    <!-- Scripts de Interatividade -->
+    <script>
+        // Função para Menu Mobile
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Animação Reveal nos elementos ao rolar a página
+        document.addEventListener('DOMContentLoaded', function () {
+            var items = document.querySelectorAll('.cg-reveal');
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) { 
+                    if (e.isIntersecting) {
+                        e.target.classList.add('in'); 
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            items.forEach(function (el) { 
+                io.observe(el); 
+            });
+        });
+
+        // ============ PASSO 4: JAVASCRIPT DO ADMIN ============
+        const SENHA_ADMIN = 'canopia2026';
+
+        const overlay = document.getElementById('adminOverlay');
+        const box = document.getElementById('adminBox');
+
+        function abrirAdmin() {
+            overlay.classList.remove('opacity-0', 'pointer-events-none');
+            overlay.setAttribute('aria-hidden', 'false');
+            requestAnimationFrame(() => box.classList.remove('scale-95', 'opacity-0'));
+            if (!document.getElementById('adminLogin').classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('adminSenha').focus(), 300);
+            }
+        }
+
+        function fecharAdmin() {
+            box.classList.add('scale-95', 'opacity-0');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            overlay.setAttribute('aria-hidden', 'true');
+        }
+
+        function entrarAdmin() {
+            const campo = document.getElementById('adminSenha');
+            if (campo.value === SENHA_ADMIN) {
+                document.getElementById('adminErro').classList.add('hidden');
+                document.getElementById('adminLogin').classList.add('hidden');
+                document.getElementById('adminPainel').classList.remove('hidden');
+                campo.value = '';
+            } else {
+                document.getElementById('adminErro').classList.remove('hidden');
+                campo.select();
+            }
+        }
+
+        // Gatilhos discretos: duplo clique na logo do rodapé ou atalho Ctrl+Shift+A
+        document.getElementById('footerLogo').addEventListener('dblclick', abrirAdmin);
+        document.addEventListener('keydown', function (e) {
+            if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') { e.preventDefault(); abrirAdmin(); }
+            if (e.key === 'Escape') fecharAdmin();
+        });
+
+        // Atalhos de teclado no input e fechamento por overlay
+        document.getElementById('adminSenha').addEventListener('keydown', e => { if (e.key === 'Enter') entrarAdmin(); });
+        overlay.addEventListener('mousedown', e => { if (e.target === overlay) fecharAdmin(); });
+
+        // Pré-visualização da capa
+        let capaUrl = null;
+        document.getElementById('nImagem').addEventListener('change', function () {
+            const arquivo = this.files[0];
+            if (!arquivo) return;
+            capaUrl = URL.createObjectURL(arquivo);
+            const prev = document.getElementById('nPreview');
+            prev.src = capaUrl;
+            prev.classList.remove('hidden');
+            document.getElementById('nImagemTexto').classList.add('hidden');
+        });
+
+        function mostrarToast(texto) {
+            const t = document.getElementById('adminToast');
+            t.textContent = texto;
+            t.classList.remove('opacity-0', 'translate-y-4');
+            setTimeout(() => t.classList.add('opacity-0', 'translate-y-4'), 2500);
+        }
+
+        function escapar(s) {
+            const d = document.createElement('div');
+            d.textContent = s;
+            return d.innerHTML;
+        }
+
+        function publicarNoticia() {
+            const titulo = document.getElementById('nTitulo').value.trim();
+            const resumo = document.getElementById('nResumo').value.trim();
+            const tipo = document.querySelector('input[name="nRelevancia"]:checked').value;
+            const erro = document.getElementById('nErro');
+
+            if (!titulo || !capaUrl) {
+                erro.textContent = 'Informe o título e escolha uma imagem de capa.';
+                erro.classList.remove('hidden');
+                return;
+            }
+            erro.classList.add('hidden');
+
+            if (tipo === 'principal') {
+                const banner = document.getElementById('bannerPrincipal');
+                banner.querySelectorAll('.noticia-destaque').forEach(el => el.remove());
+                banner.insertAdjacentHTML('afterbegin',
+                    '<div class="noticia-destaque absolute inset-0">' +
+                        '<img src="' + capaUrl + '" alt="" class="w-full h-full object-cover">' +
+                        '<div class="absolute inset-x-0 bottom-0 p-6 md:p-10 pb-14 bg-gradient-to-t from-black/80 to-transparent text-white">' +
+                            '<h3 class="font-serif text-2xl md:text-4xl font-bold">' + escapar(titulo) + '</h3>' +
+                            (resumo ? '<p class="mt-2 max-w-3xl text-sm md:text-base opacity-90">' + escapar(resumo) + '</p>' : '') +
+                        '</div>' +
+                    '</div>');
+            } else {
+                const grid = document.getElementById('gridSubnoticias');
+                grid.insertAdjacentHTML('afterbegin',
+                    '<div class="flex flex-col cg-reveal in cg-card-hover cursor-pointer">' +
+                        '<img src="' + capaUrl + '" alt="" class="h-40 w-full object-cover rounded-2xl mb-3">' +
+                        '<h3 class="font-sans font-medium text-brand-dark text-sm md:text-base leading-tight">' + escapar(titulo) + '</h3>' +
+                    '</div>');
+                if (grid.children.length > 4) grid.lastElementChild.remove(); // mantém sempre 4 cards
+            }
+
+            // Limpa o formulário após a publicação
+            ['nTitulo', 'nResumo'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('nImagem').value = '';
+            document.getElementById('nPreview').classList.add('hidden');
+            document.getElementById('nImagemTexto').classList.remove('hidden');
+            capaUrl = null;
+
+            fecharAdmin();
+            mostrarToast('Notícia publicada');
+        }
+    </script>
+</body>
+</html>

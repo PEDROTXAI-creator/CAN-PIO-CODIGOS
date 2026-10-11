@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artigos - Canópia Global</title>
+    
+    <!-- Configuração do Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                dark: '#313B1D',   /* Verde Escuro */
+                light: '#E4E4E4',  /* Base Branca/Gelo */
+                text: '#1C1A17'    /* Preto suave */
+              }
+            },
+            fontFamily: {
+              sans: ['Arial', 'sans-serif'],
+              serif: ['"Times New Roman"', 'serif']
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Ícones Phosphor -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        body {
+            background-color: #E4E4E4;
+            color: #1C1A17;
+            overflow-x: hidden;
+        }
+
+        /* Customização do Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #E4E4E4; }
+        ::-webkit-scrollbar-thumb { background: #313B1D; border-radius: 4px; }
+
+        /* Estilo para Botão de Filtro Ativo */
+        .filter-btn.active {
+            background-color: #313B1D;
+            color: #E4E4E4;
+            border-color: #313B1D;
+        }
+
+        /* Estilo para Botão de Paginação Ativo */
+        .page-btn.active {
+            background-color: #313B1D;
+            color: #E4E4E4;
+            border-color: #313B1D;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- CABEÇALHO -->
+    <header class="bg-brand-dark text-brand-light sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
+            
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="17 Sem Título_20260926192418.jpg" alt="Logo Canópia Global" class="h-12 w-12 rounded-full object-cover border border-brand-light">
+                <div class="font-serif">
+                    <h1 class="text-2xl md:text-3xl font-bold tracking-widest leading-none">CANÓPIA</h1>
+                    <span class="text-[0.65rem] md:text-xs font-sans tracking-[0.3em] uppercase opacity-90 block mt-1">Global</span>
+                </div>
+            </a>
+
+            <!-- Navegação Desktop -->
+            <nav class="hidden lg:flex items-center gap-6 font-sans text-sm font-medium">
+                <a href="index.html" class="hover:text-gray-300 transition-colors pb-1">Home</a>
+                <a href="sobre.html" class="hover:text-gray-300 transition-colors pb-1">Sobre Nós</a>
+                <a href="servicos.html" class="hover:text-gray-300 transition-colors pb-1">Serviços</a>
+                <a href="noticias.html" class="hover:text-gray-300 transition-colors pb-1">Notícias</a>
+                <a href="artigos.html" class="hover:text-gray-300 transition-colors border-b-2 border-brand-light pb-1">Artigos</a>
+                
+                <a href="https://forms.gle/exemplo" target="_blank" class="bg-[#8A151B] text-white px-5 py-2 font-bold rounded-sm hover:bg-[#6e1015] transition-colors shadow-md">
+                    Submeter Conteúdo
+                </a>
+            </nav>
+
+            <!-- Botão Menu Mobile -->
+            <button class="lg:hidden text-brand-light text-3xl" onclick="toggleMobileMenu()">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-brand-dark border-t border-brand-light/20 px-4 py-4 space-y-4 font-sans text-brand-light">
+            <a href="index.html" class="block font-serif text-lg border-b border-white/10 pb-2">Home</a>
+            <a href="sobre.html" class="block font-serif text-lg border-b border-white/10 pb-2">Sobre Nós</a>
+            <a href="noticias.html" class="block font-serif text-lg border-b border-white/10 pb-2">Notícias</a>
+            <a href="artigos.html" class="block font-serif text-lg border-b border-white/10 pb-2">Artigos</a>
+            <div class="pt-2 flex justify-end">
+                <a href="https://forms.gle/exemplo" target="_blank" class="bg-[#8A151B] text-white px-4 py-2 font-bold rounded-sm text-sm">Submeter Conteúdo</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- TÍTULO DA PÁGINA -->
+    <section class="bg-brand-dark text-brand-light py-10 px-4 text-center border-b-4 border-[#8A151B]">
+        <div class="max-w-7xl mx-auto">
+            <h1 class="font-serif text-3xl md:text-5xl font-bold tracking-wide mb-2">Acervo de Artigos</h1>
+            <p class="font-sans text-sm md:text-base text-brand-light/80">Explore publicações, pesquisas e análises divididas por eixos temáticos</p>
+        </div>
+    </section>
+
+    <!-- BARRA DE FILTROS -->
+    <section class="max-w-7xl mx-auto px-4 md:px-6 pt-8 pb-4">
+        <div class="flex flex-wrap items-center justify-center gap-2 md:gap-3">
+            <button onclick="filterNews('todos')" class="filter-btn active px-4 py-2 rounded-full border border-brand-dark/30 font-sans text-xs md:text-sm font-bold transition-all shadow-sm">
+                Todos os Temas
+            </button>
+            <button onclick="filterNews('mundo')" class="filter-btn px-4 py-2 rounded-full border border-brand-dark/30 bg-white/50 hover:bg-brand-dark hover:text-white font-sans text-xs md:text-sm font-bold transition-all shadow-sm">
+                Mundo
+            </button>
+            <button onclick="filterNews('politica')" class="filter-btn px-4 py-2 rounded-full border border-brand-dark/30 bg-white/50 hover:bg-brand-dark hover:text-white font-sans text-xs md:text-sm font-bold transition-all shadow-sm">
+                Política
+            </button>
+            <button onclick="filterNews('economia')" class="filter-btn px-4 py-2 rounded-full border border-brand-dark/30 bg-white/50 hover:bg-brand-dark hover:text-white font-sans text-xs md:text-sm font-bold transition-all shadow-sm">
+                Economia
+            </button>
+            <button onclick="filterNews('esportes')" class="filter-btn px-4 py-2 rounded-full border border-brand-dark/30 bg-white/50 hover:bg-brand-dark hover:text-white font-sans text-xs md:text-sm font-bold transition-all shadow-sm">
+                Esportes
+            </button>
+            <button onclick="filterNews('tecnologia')" class="filter-btn px-4 py-2 rounded-full border border-brand-dark/30 bg-white/50 hover:bg-brand-dark hover:text-white font-sans text-xs md:text-sm font-bold transition-all shadow-sm">
+                Tecnologia
+            </button>
+            <button onclick="filterNews('cultura')" class="filter-btn px-4 py-2 rounded-full border border-brand-dark/30 bg-white/50 hover:bg-brand-dark hover:text-white font-sans text-xs md:text-sm font-bold transition-all shadow-sm">
+                Cultura
+            </button>
+        </div>
+    </section>
+
+    <!-- GRID DE ARTIGOS -->
+    <main class="max-w-7xl mx-auto px-4 md:px-6 py-8">
+        <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Artigo 1: Política -->
+            <article class="news-card bg-white rounded-lg overflow-hidden border border-gray-300 shadow-sm hover:shadow-md transition-shadow" data-category="politica">
+                <a href="noticia.html" class="block group">
+                    <div class="aspect-video w-full bg-gray-200 overflow-hidden relative">
+                        <img src="image_5b0116.jpg" alt="Lula" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-3 left-3 bg-[#8A151B] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">Política</span>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs text-brand-text/60">30/09/2026 • Por Rany Veloso</span>
+                        <h2 class="font-serif text-xl font-bold text-brand-dark mt-2 mb-2 group-hover:underline leading-snug">
+                            Lula decide não participar de debate e deve conceder entrevista a podcast
+                        </h2>
+                        <p class="font-sans text-sm text-brand-text/80 line-clamp-3">
+                            A assessoria do candidato à reeleição informou a decisão. Foco da estratégia é atingir o eleitorado digital.
+                        </p>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Artigo 2: Mundo -->
+            <article class="news-card bg-white rounded-lg overflow-hidden border border-gray-300 shadow-sm hover:shadow-md transition-shadow" data-category="mundo">
+                <a href="#" class="block group">
+                    <div class="aspect-video w-full bg-gray-200 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=600&q=80" alt="Mundo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-3 left-3 bg-brand-dark text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">Mundo</span>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs text-brand-text/60">29/09/2026 • Por Redação Global</span>
+                        <h2 class="font-serif text-xl font-bold text-brand-dark mt-2 mb-2 group-hover:underline leading-snug">
+                            Cúpula da ONU debate acordos internacionais de sustentabilidade na Amazônia
+                        </h2>
+                        <p class="font-sans text-sm text-brand-text/80 line-clamp-3">
+                            Representantes de mais de 40 países reúnem-se para discutir diretrizes de apoio ao desenvolvimento sustentável regional.
+                        </p>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Artigo 3: Economia -->
+            <article class="news-card bg-white rounded-lg overflow-hidden border border-gray-300 shadow-sm hover:shadow-md transition-shadow" data-category="economia">
+                <a href="#" class="block group">
+                    <div class="aspect-video w-full bg-gray-200 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=600&q=80" alt="Economia" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-3 left-3 bg-brand-dark text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">Economia</span>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs text-brand-text/60">28/09/2026 • Por Análise de Mercado</span>
+                        <h2 class="font-serif text-xl font-bold text-brand-dark mt-2 mb-2 group-hover:underline leading-snug">
+                            Mercado financeiro projeta estabilidade e alta no comércio exterior
+                        </h2>
+                        <p class="font-sans text-sm text-brand-text/80 line-clamp-3">
+                            Relatórios divulgados nesta semana indicam cenário favorável para investimentos em tecnologia e infraestrutura.
+                        </p>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Artigo 4: Tecnologia -->
+            <article class="news-card bg-white rounded-lg overflow-hidden border border-gray-300 shadow-sm hover:shadow-md transition-shadow" data-category="tecnologia">
+                <a href="#" class="block group">
+                    <div class="aspect-video w-full bg-gray-200 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80" alt="Tecnologia" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-3 left-3 bg-brand-dark text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">Tecnologia</span>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs text-brand-text/60">27/09/2026 • Por Equipe Tech</span>
+                        <h2 class="font-serif text-xl font-bold text-brand-dark mt-2 mb-2 group-hover:underline leading-snug">
+                            Avanços na computação de alto desempenho transformam pesquisas acadêmicas
+                        </h2>
+                        <p class="font-sans text-sm text-brand-text/80 line-clamp-3">
+                            Novos sistemas de processamento aceleram diagnósticos e estudos geopolíticos complexos em universidades globais.
+                        </p>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Artigo 5: Cultura -->
+            <article class="news-card bg-white rounded-lg overflow-hidden border border-gray-300 shadow-sm hover:shadow-md transition-shadow" data-category="cultura">
+                <a href="#" class="block group">
+                    <div class="aspect-video w-full bg-gray-200 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=600&q=80" alt="Cultura" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-3 left-3 bg-brand-dark text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">Cultura</span>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs text-brand-text/60">25/09/2026 • Por Curadoria Cultural</span>
+                        <h2 class="font-serif text-xl font-bold text-brand-dark mt-2 mb-2 group-hover:underline leading-snug">
+                            Mostra internacional de cinema exibe produções independentes do Norte do Brasil
+                        </h2>
+                        <p class="font-sans text-sm text-brand-text/80 line-clamp-3">
+                            O festival destaca narrativas sobre a identidade amazônica e diversidade regional em sessões gratuitas.
+                        </p>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Artigo 6: Esportes -->
+            <article class="news-card bg-white rounded-lg overflow-hidden border border-gray-300 shadow-sm hover:shadow-md transition-shadow" data-category="esportes">
+                <a href="#" class="block group">
+                    <div class="aspect-video w-full bg-gray-200 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=600&q=80" alt="Esportes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-3 left-3 bg-brand-dark text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">Esportes</span>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs text-brand-text/60">24/09/2026 • Por Editoria de Esportes</span>
+                        <h2 class="font-serif text-xl font-bold text-brand-dark mt-2 mb-2 group-hover:underline leading-snug">
+                            Atletas universitários disputam fase decisiva do torneio regional
+                        </h2>
+                        <p class="font-sans text-sm text-brand-text/80 line-clamp-3">
+                            Competições de diversas modalidades movimentam campi e reúnem torcidas em partidas disputadas até o fim.
+                        </p>
+                    </div>
+                </a>
+            </article>
+
+        </div>
+
+        <!-- Mensagem de Nenhum Artigo Encontrado -->
+        <div id="noResults" class="hidden text-center py-16">
+            <i class="ph ph-newspaper text-5xl text-brand-dark/40 mb-3 block"></i>
+            <p class="font-serif text-xl text-brand-dark font-bold">Nenhum artigo encontrado neste tema.</p>
+            <p class="font-sans text-sm text-brand-text/60 mt-1">Tente selecionar outra categoria.</p>
+        </div>
+
+        <!-- PAGINAÇÃO -->
+        <div class="flex justify-center items-center gap-2 mt-12">
+            <button class="px-4 py-2 rounded border border-brand-dark/30 bg-white text-brand-dark font-bold hover:bg-brand-dark hover:text-white transition-colors disabled:opacity-50" disabled>
+                Anterior
+            </button>
+            <button class="page-btn active px-4 py-2 rounded border border-brand-dark/30 font-bold transition-colors">1</button>
+            <button class="page-btn px-4 py-2 rounded border border-brand-dark/30 bg-white text-brand-dark font-bold hover:bg-brand-dark hover:text-white transition-colors">2</button>
+            <button class="page-btn px-4 py-2 rounded border border-brand-dark/30 bg-white text-brand-dark font-bold hover:bg-brand-dark hover:text-white transition-colors">3</button>
+            <button class="page-btn px-4 py-2 rounded border border-brand-dark/30 bg-white text-brand-dark font-bold hover:bg-brand-dark hover:text-white transition-colors">4</button>
+            <button class="px-4 py-2 rounded border border-brand-dark/30 bg-white text-brand-dark font-bold hover:bg-brand-dark hover:text-white transition-colors">
+                Próxima
+            </button>
+        </div>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-brand-dark text-brand-light py-12 px-6 border-t border-brand-light/10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 items-center">
+            
+            <div class="text-center md:text-left">
+                <h3 class="font-serif text-xl font-bold mb-4">Serviços</h3>
+                <ul class="space-y-2 font-sans text-sm text-brand-light/80">
+                    <li class="cursor-default">Publicação de Artigos</li>
+                    <li class="cursor-default">Mural de Vagas</li>
+                    <li class="cursor-default">Eventos Acadêmicos</li>
+                    <li class="cursor-default">Suporte ao Autor</li>
+                </ul>
+            </div>
+
+            <div class="flex justify-center">
+                <div class="border-2 border-brand-light p-4 rounded-xl flex items-center justify-center w-32 h-32 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
+                    <img src="17 Sem Título_20260926192418.jpg" alt="Logo Canópia Global" class="max-w-full max-h-full rounded-md">
+                </div>
+            </div>
+
+            <div class="text-center md:text-right">
+                <h3 class="font-serif text-xl font-bold mb-4">Contatos</h3>
+                <div class="flex flex-col items-center md:items-end space-y-3 font-sans text-sm text-brand-light/80">
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-tiktok-logo text-xl"></i> @canopiaglobal</a>
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-instagram-logo text-xl"></i> /canopiaglobal</a>
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-x-logo text-xl"></i> @canopiaglobal</a>
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-facebook-logo text-xl"></i> /canopiaglobal</a>
+                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-whatsapp-logo text-xl"></i> (00) 00000-0000</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- LÓGICA DE FILTRAGEM (JAVASCRIPT) -->
+    <script>
+        function filterNews(category) {
+            const cards = document.querySelectorAll('.news-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            let visibleCount = 0;
+
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes(`'${category}'`)) {
+                    btn.classList.add('active');
+                }
+            });
+
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                
+                if (category === 'todos' || cardCategory === category) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
