@@ -281,4 +281,39 @@
                 const card = `
                     <article class="bg-white rounded-lg overflow-hidden border border-gray-300 shadow-sm hover:shadow-md transition-shadow">
                         <a href="#" class="block group">
-                            <div class="aspect-video w-full bg-gray
+                            <div class="aspect-video w-full bg-gray-200 overflow-hidden relative">
+                                <img src="${item.image || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600&q=80'}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <span class="absolute top-3 left-3 bg-[#8A151B] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">${catLabel}</span>
+                            </div>
+                            <div class="p-5">
+                                <span class="text-xs text-brand-text/60">${formattedDate} ${item.author ? '• Por ' + item.author : ''}</span>
+                                <h2 class="font-serif text-xl font-bold text-brand-dark mt-2 mb-2 group-hover:underline leading-snug">
+                                    ${item.title}
+                                </h2>
+                                <p class="font-sans text-sm text-brand-text/80 line-clamp-3">
+                                    ${item.summary || ''}
+                                </p>
+                            </div>
+                        </a>
+                    </article>
+                `;
+                grid.innerHTML += card;
+            });
+        }
+
+        function filterCategory(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes(`'${category}'`)) {
+                    btn.classList.add('active');
+                }
+            });
+
+            renderNews(category);
+        }
+
+        window.addEventListener('DOMContentLoaded', loadNoticias);
+    </script>
+</body>
+</html>
