@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Nós- Canópia Global</title>
+    <title>Sobre Nós - Canópia Global</title>
     
     <!-- Configuração do Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -41,20 +41,6 @@
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #E4E4E4; }
         ::-webkit-scrollbar-thumb { background: #313B1D; border-radius: 4px; }
-
-        /* Estilo para Botão de Filtro Ativo */
-        .filter-btn.active {
-            background-color: #313B1D;
-            color: #E4E4E4;
-            border-color: #313B1D;
-        }
-
-        /* Estilo para Botão de Paginação Ativo */
-        .page-btn.active {
-            background-color: #313B1D;
-            color: #E4E4E4;
-            border-color: #313B1D;
-        }
     </style>
 </head>
 <body class="font-sans antialiased">
@@ -64,7 +50,7 @@
         <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
             
             <a href="index.html" class="flex items-center gap-3">
-                <img src="17 Sem Título_20260926192418.jpg" alt="Logo Canópia Global" class="h-12 w-12 rounded-full object-cover border border-brand-light">
+                <img src="https://i.ibb.co/mCtm8Tpb/ed71d4a4-798a-44d9-9d3d-8c37ca1eae00.jpg" alt="Logo Canópia Global" class="h-12 w-12 rounded-full object-cover border border-brand-light">
                 <div class="font-serif">
                     <h1 class="text-2xl md:text-3xl font-bold tracking-widest leading-none">CANÓPIA</h1>
                     <span class="text-[0.65rem] md:text-xs font-sans tracking-[0.3em] uppercase opacity-90 block mt-1">Global</span>
@@ -75,9 +61,10 @@
             <nav class="hidden lg:flex items-center gap-6 font-sans text-sm font-medium">
                 <a href="index.html" class="hover:text-gray-300 transition-colors pb-1">Home</a>
                 <a href="sobre.html" class="hover:text-gray-300 transition-colors pb-1">Sobre Nós</a>
-                <a href="servicos.html" class="hover:text-gray-300 transition-colors pb-1">Serviços</a>
+                <a href="servicos.html" class="hover:text-gray-300 transition-colors pb-1 border-b-2 border-brand-light">Serviços</a>
                 <a href="noticias.html" class="hover:text-gray-300 transition-colors pb-1">Notícias</a>
-                <a href="artigos.html" class="hover:text-gray-300 transition-colors border-b-2 border-brand-light pb-1">Artigos</a>
+                <a href="artigos.html" class="hover:text-gray-300 transition-colors pb-1">Artigos</a>
+                <a href="podcast.html" class="hover:text-gray-300 transition-colors pb-1">Podcasts</a>
                 
                 <a href="https://forms.gle/exemplo" target="_blank" class="bg-[#8A151B] text-white px-5 py-2 font-bold rounded-sm hover:bg-[#6e1015] transition-colors shadow-md">
                     Submeter Conteúdo
@@ -94,11 +81,10 @@
         <div id="mobileMenu" class="hidden lg:hidden bg-brand-dark border-t border-brand-light/20 px-4 py-4 space-y-4 font-sans text-brand-light">
             <a href="index.html" class="block font-serif text-lg border-b border-white/10 pb-2">Home</a>
             <a href="sobre.html" class="block font-serif text-lg border-b border-white/10 pb-2">Sobre Nós</a>
+            <a href="servicos.html" class="block font-serif text-lg border-b border-white/10 pb-2">Serviços</a>
             <a href="noticias.html" class="block font-serif text-lg border-b border-white/10 pb-2">Notícias</a>
             <a href="artigos.html" class="block font-serif text-lg border-b border-white/10 pb-2">Artigos</a>
-            <div class="pt-2 flex justify-end">
-                <a href="https://forms.gle/exemplo" target="_blank" class="bg-[#8A151B] text-white px-4 py-2 font-bold rounded-sm text-sm">Submeter Conteúdo</a>
-            </div>
+            <a href="podcast.html" class="block font-serif text-lg border-b border-white/10 pb-2">Podcasts</a>
         </div>
     </header>
 
@@ -123,7 +109,7 @@
         <!-- O que é o CARIAP? -->
         <section class="space-y-4">
             <div class="flex items-center gap-3">
-                <i class="ph ph-[#8A151B] ph-target text-2xl text-brand-dark"></i>
+                <i class="ph ph-target text-2xl text-brand-dark"></i>
                 <h2 class="font-serif text-2xl md:text-3xl font-bold text-brand-dark">O que é o CARIAP?</h2>
             </div>
             <p class="font-sans text-base md:text-lg text-brand-text leading-relaxed pl-1">
@@ -157,19 +143,16 @@
             </ul>
         </section>
 
-        <!-- Fale com o CARIAP (Card de Ação) -->
+        <!-- Fale com o CARIAP (Apenas Instagram) -->
         <section class="bg-white/60 border border-brand-dark/10 rounded-2xl p-6 md:p-8 shadow-sm space-y-6">
             <div>
                 <h3 class="font-serif text-2xl font-bold text-brand-dark mb-2">Fale com o CARIAP</h3>
                 <p class="font-sans text-sm md:text-base text-brand-text/80">
-                    Quer participar das atividades, propor projetos ou tirar dúvidas? Entre em contato.
+                    Quer participar das atividades, propor projetos ou tirar dúvidas? Entre em contato através do nosso perfil oficial.
                 </p>
             </div>
             <div class="flex flex-wrap items-center gap-4">
-                <a href="mailto:contato@cariap.org" class="bg-brand-dark text-brand-light px-6 py-2.5 rounded-md font-sans text-sm font-bold flex items-center gap-2 hover:bg-brand-dark/90 transition-colors shadow">
-                    <i class="ph ph-envelope text-lg"></i> Email
-                </a>
-                <a href="https://instagram.com" target="_blank" class="bg-white text-brand-dark border border-brand-dark/30 px-6 py-2.5 rounded-md font-sans text-sm font-bold flex items-center gap-2 hover:bg-gray-100 transition-colors shadow-sm">
+                <a href="https://instagram.com" target="_blank" class="bg-brand-dark text-brand-light border border-brand-dark/30 px-6 py-2.5 rounded-md font-sans text-sm font-bold flex items-center gap-2 hover:bg-brand-dark/90 transition-colors shadow">
                     <i class="ph ph-instagram-logo text-lg"></i> Instagram
                 </a>
             </div>
@@ -193,7 +176,7 @@
 
             <div class="flex justify-center">
                 <div class="border-2 border-brand-light p-4 rounded-xl flex items-center justify-center w-32 h-32 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
-                    <img src="17 Sem Título_20260926192418.jpg" alt="Logo Canópia Global" class="max-w-full max-h-full rounded-md">
+                    <img src="https://i.ibb.co/mCtm8Tpb/ed71d4a4-798a-44d9-9d3d-8c37ca1eae00.jpg" alt="Logo Canópia Global" class="max-w-full max-h-full rounded-md">
                 </div>
             </div>
 
