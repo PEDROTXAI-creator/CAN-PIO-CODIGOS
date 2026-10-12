@@ -41,13 +41,6 @@
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #E4E4E4; }
         ::-webkit-scrollbar-thumb { background: #313B1D; border-radius: 4px; }
-
-        /* Estilo de paginação ativa */
-        .page-btn.active {
-            background-color: #313B1D;
-            color: #E4E4E4;
-            border-color: #313B1D;
-        }
     </style>
 </head>
 <body class="font-sans antialiased">
@@ -57,37 +50,41 @@
         <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
             
             <a href="index.html" class="flex items-center gap-3">
-                <img src="17 Sem Título_20260926192418.jpg" alt="Logo Canópia Global" class="h-12 w-12 rounded-full object-cover border border-brand-light">
+                <img src="https://i.ibb.co/mCtm8Tpb/ed71d4a4-798a-44d9-9d3d-8c37ca1eae00.jpg" alt="Logo Canópia Global" class="h-12 w-12 rounded-full object-cover border border-brand-light">
                 <div class="font-serif">
                     <h1 class="text-2xl md:text-3xl font-bold tracking-widest leading-none">CANÓPIA</h1>
                     <span class="text-[0.65rem] md:text-xs font-sans tracking-[0.3em] uppercase opacity-90 block mt-1">Global</span>
                 </div>
             </a>
 
+            <!-- Navegação Desktop -->
             <nav class="hidden lg:flex items-center gap-6 font-sans text-sm font-medium">
                 <a href="index.html" class="hover:text-gray-300 transition-colors pb-1">Home</a>
                 <a href="sobre.html" class="hover:text-gray-300 transition-colors pb-1">Sobre Nós</a>
-                <a href="#" class="hover:text-gray-300 transition-colors pb-1">Serviços</a>
+                <a href="servicos.html" class="hover:text-gray-300 transition-colors pb-1 border-b-2 border-brand-light">Serviços</a>
                 <a href="noticias.html" class="hover:text-gray-300 transition-colors pb-1">Notícias</a>
                 <a href="artigos.html" class="hover:text-gray-300 transition-colors pb-1">Artigos</a>
-                <a href="podcasts.html" class="hover:text-gray-300 transition-colors border-b-2 border-brand-light pb-1">Podcasts</a>
+                <a href="podcast.html" class="hover:text-gray-300 transition-colors pb-1">Podcasts</a>
                 
                 <a href="https://forms.gle/exemplo" target="_blank" class="bg-[#8A151B] text-white px-5 py-2 font-bold rounded-sm hover:bg-[#6e1015] transition-colors shadow-md">
                     Submeter Conteúdo
                 </a>
             </nav>
 
+            <!-- Botão Menu Mobile -->
             <button class="lg:hidden text-brand-light text-3xl" onclick="toggleMobileMenu()">
                 <i class="ph ph-list"></i>
             </button>
         </div>
 
+        <!-- Menu Mobile -->
         <div id="mobileMenu" class="hidden lg:hidden bg-brand-dark border-t border-brand-light/20 px-4 py-4 space-y-4 font-sans text-brand-light">
             <a href="index.html" class="block font-serif text-lg border-b border-white/10 pb-2">Home</a>
             <a href="sobre.html" class="block font-serif text-lg border-b border-white/10 pb-2">Sobre Nós</a>
+            <a href="servicos.html" class="block font-serif text-lg border-b border-white/10 pb-2">Serviços</a>
             <a href="noticias.html" class="block font-serif text-lg border-b border-white/10 pb-2">Notícias</a>
             <a href="artigos.html" class="block font-serif text-lg border-b border-white/10 pb-2">Artigos</a>
-            <a href="podcasts.html" class="block font-serif text-lg border-b border-white/10 pb-2">Podcasts</a>
+            <a href="podcast.html" class="block font-serif text-lg border-b border-white/10 pb-2">Podcasts</a>
         </div>
     </header>
 
@@ -127,7 +124,7 @@
     </main>
 
     <!-- RODAPÉ -->
-    <footer class="bg-brand-dark text-brand-light py-12 px-6 mt-12">
+    <footer class="bg-brand-dark text-brand-light py-12 px-6 border-t border-brand-light/10">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 items-center">
             
             <div class="text-center md:text-left">
@@ -142,7 +139,7 @@
 
             <div class="flex justify-center">
                 <div class="border-2 border-brand-light p-4 rounded-xl flex items-center justify-center w-32 h-32 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
-                    <img src="17 Sem Título_20260926192418.jpg" alt="Logo Canópia Global" class="max-w-full max-h-full rounded-md">
+                    <img src="https://i.ibb.co/mCtm8Tpb/ed71d4a4-798a-44d9-9d3d-8c37ca1eae00.jpg" alt="Logo Canópia Global" class="max-w-full max-h-full rounded-md">
                 </div>
             </div>
 
