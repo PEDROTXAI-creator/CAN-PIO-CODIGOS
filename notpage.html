@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notícia - Canópia Global</title>
+    <title>Canópia Global - Leitura</title>
     
     <!-- Configuração do Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -42,18 +42,13 @@
         ::-webkit-scrollbar-track { background: #E4E4E4; }
         ::-webkit-scrollbar-thumb { background: #313B1D; border-radius: 4px; }
 
-        /* Estilo para Botão de Filtro Ativo */
-        .filter-btn.active {
-            background-color: #313B1D;
-            color: #E4E4E4;
-            border-color: #313B1D;
+        /* Estilização para o conteúdo retornado em Markdown/Texto */
+        .article-content p {
+            margin-bottom: 1.25rem;
+            line-height: 1.8;
         }
-
-        /* Estilo para Botão de Paginação Ativo */
-        .page-btn.active {
-            background-color: #313B1D;
-            color: #E4E4E4;
-            border-color: #313B1D;
+        .article-content strong {
+            color: #313B1D;
         }
     </style>
 </head>
@@ -64,7 +59,7 @@
         <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
             
             <a href="index.html" class="flex items-center gap-3">
-                <img src="17 Sem Título_20260926192418.jpg" alt="Logo Canópia Global" class="h-12 w-12 rounded-full object-cover border border-brand-light">
+                <img src="https://i.ibb.co/mCtm8Tpb/ed71d4a4-798a-44d9-9d3d-8c37ca1eae00.jpg" alt="Logo Canópia Global" class="h-12 w-12 rounded-full object-cover border border-brand-light">
                 <div class="font-serif">
                     <h1 class="text-2xl md:text-3xl font-bold tracking-widest leading-none">CANÓPIA</h1>
                     <span class="text-[0.65rem] md:text-xs font-sans tracking-[0.3em] uppercase opacity-90 block mt-1">Global</span>
@@ -76,8 +71,9 @@
                 <a href="index.html" class="hover:text-gray-300 transition-colors pb-1">Home</a>
                 <a href="sobre.html" class="hover:text-gray-300 transition-colors pb-1">Sobre Nós</a>
                 <a href="servicos.html" class="hover:text-gray-300 transition-colors pb-1">Serviços</a>
-                <a href="noticias.html" class="hover:text-gray-300 transition-colors pb-1">Notícias</a>
-                <a href="artigos.html" class="hover:text-gray-300 transition-colors border-b-2 border-brand-light pb-1">Artigos</a>
+                <a href="noticias.html" class="hover:text-gray-300 transition-colors pb-1 border-b-2 border-brand-light">Notícias</a>
+                <a href="artigos.html" class="hover:text-gray-300 transition-colors pb-1">Artigos</a>
+                <a href="podcast.html" class="hover:text-gray-300 transition-colors pb-1">Podcasts</a>
                 
                 <a href="https://forms.gle/exemplo" target="_blank" class="bg-[#8A151B] text-white px-5 py-2 font-bold rounded-sm hover:bg-[#6e1015] transition-colors shadow-md">
                     Submeter Conteúdo
@@ -94,65 +90,64 @@
         <div id="mobileMenu" class="hidden lg:hidden bg-brand-dark border-t border-brand-light/20 px-4 py-4 space-y-4 font-sans text-brand-light">
             <a href="index.html" class="block font-serif text-lg border-b border-white/10 pb-2">Home</a>
             <a href="sobre.html" class="block font-serif text-lg border-b border-white/10 pb-2">Sobre Nós</a>
+            <a href="servicos.html" class="block font-serif text-lg border-b border-white/10 pb-2">Serviços</a>
             <a href="noticias.html" class="block font-serif text-lg border-b border-white/10 pb-2">Notícias</a>
             <a href="artigos.html" class="block font-serif text-lg border-b border-white/10 pb-2">Artigos</a>
-            <div class="pt-2 flex justify-end">
-                <a href="https://forms.gle/exemplo" target="_blank" class="bg-[#8A151B] text-white px-4 py-2 font-bold rounded-sm text-sm">Submeter Conteúdo</a>
-            </div>
+            <a href="podcast.html" class="block font-serif text-lg border-b border-white/10 pb-2">Podcasts</a>
         </div>
     </header>
 
-    <!-- CONTEÚDO DA NOTÍCIA -->
-    <main class="max-w-4xl mx-auto px-4 md:px-6 py-8 md:py-12 bg-brand-light">
+    <!-- ÁREA DE CARREGAMENTO -->
+    <div id="loading" class="max-w-4xl mx-auto px-4 py-20 text-center">
+        <i class="ph ph-spinner text-5xl text-brand-dark/40 mb-3 block animate-spin mx-auto"></i>
+        <p class="font-serif text-xl text-brand-dark font-bold">Carregando conteúdo...</p>
+    </div>
+
+    <!-- CONTEÚDO DA NOTÍCIA (Oculto até carregar) -->
+    <main id="articleContainer" class="hidden max-w-4xl mx-auto px-4 md:px-6 py-8 md:py-12 bg-brand-light">
         
-        <!-- Cabeçalho do Artigo -->
+        <!-- Cabeçalho da Notícia -->
         <header class="mb-8">
+            <span id="postCategory" class="bg-[#8A151B] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded inline-block mb-3">
+                GERAL
+            </span>
+
             <!-- Título -->
-            <h1 class="font-sans text-3xl md:text-5xl font-bold text-brand-dark mb-4 leading-tight">
-                Lula decide não participar de debate da TV Globo e deve conceder entrevista ao Flow no mesmo horário
+            <h1 id="postTitle" class="font-sans text-3xl md:text-5xl font-bold text-brand-dark mb-4 leading-tight">
+                <!-- Preenchido via JS -->
             </h1>
             
-            <!-- Subtítulo -->
-            <p class="font-sans text-lg md:text-xl text-brand-text/70 mb-6">
-                A assessoria do candidato à reeleição informou a decisão à TV Globo. Presidente só deve rever os planos caso surja um fato novo.
+            <!-- Subtítulo / Resumo -->
+            <p id="postSummary" class="font-sans text-lg md:text-xl text-brand-text/70 mb-6">
+                <!-- Preenchido via JS -->
             </p>
 
-            <!-- Metadados (Autor e Data apenas) -->
-            <div class="py-3 border-y border-gray-300">
-                <span class="block font-bold text-brand-text text-sm md:text-base">Por Rany Veloso</span>
-                <span class="block text-xs md:text-sm text-brand-text/60 mt-0.5">30/09/2026 09h57 - Atualizado há 3 horas</span>
+            <!-- Metadados -->
+            <div class="py-3 border-y border-gray-300 flex flex-wrap justify-between items-center gap-2">
+                <span id="postAuthor" class="font-bold text-brand-text text-sm md:text-base">
+                    <!-- Preenchido via JS -->
+                </span>
+                <span id="postDate" class="text-xs md:text-sm text-brand-text/60">
+                    <!-- Preenchido via JS -->
+                </span>
             </div>
         </header>
 
         <!-- Imagem Principal -->
-        <figure class="mb-10 w-full">
+        <figure id="postFigure" class="mb-10 w-full hidden">
             <div class="w-full bg-gray-300 rounded-sm overflow-hidden aspect-[16/9] md:aspect-[21/9] relative">
-                <img src="image_5b0116.jpg" alt="Presidente Lula" class="w-full h-full object-cover object-top">
+                <img id="postImage" src="" alt="" class="w-full h-full object-cover">
             </div>
-            <figcaption class="font-sans text-xs text-brand-text/60 mt-2">
-                Presidente Lula — Foto: Ricardo Stuckert
-            </figcaption>
         </figure>
 
         <!-- Corpo do Texto -->
-        <article class="article-content font-sans text-brand-text text-lg leading-relaxed md:text-xl">
-            <p>
-                O presidente e candidato à reeleição Luiz Inácio Lula da Silva decidiu que não vai participar do debate promovido pela TV Globo nesta quinta-feira (3). A decisão foi comunicada oficialmente pela assessoria da campanha à emissora.
-            </p>
-            <p>
-                De acordo com fontes ligadas ao Planalto, a estratégia adotada visa priorizar outros formatos de comunicação na reta final. <strong>O presidente concederá uma longa entrevista ao podcast Flow</strong>, que será transmitida no mesmo horário em que ocorrerização o encontro televisivo com os demais candidatos.
-            </p>
-            <p>
-                A campanha avalia que o formato de podcast permite um aprofundamento maior nas propostas do governo, sem as interrupções características dos debates tradicionais. Além disso, <strong>o foco na internet atrai uma fatia do eleitorado jovem</strong> que tem sido prioridade nas últimas semanas.
-            </p>
-            <p>
-                A equipe de comunicação reiterou que a agenda pode sofrer alterações pontuais, mas <strong>o presidente só deve rever os planos caso surja um fato novo e de extrema relevância</strong> na conjuntura política antes do fim de semana.
-            </p>
+        <article id="postBody" class="article-content font-sans text-brand-text text-lg leading-relaxed md:text-xl">
+            <!-- Preenchido via JS -->
         </article>
 
     </main>
 
-    <!-- RODAPÉ (Idêntico ao da Home) -->
+    <!-- RODAPÉ -->
     <footer class="bg-brand-dark text-brand-light py-12 px-6 border-t border-brand-light/10">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 items-center">
             
@@ -168,7 +163,7 @@
 
             <div class="flex justify-center">
                 <div class="border-2 border-brand-light p-4 rounded-xl flex items-center justify-center w-32 h-32 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
-                    <img src="17 Sem Título_20260926192418.jpg" alt="Logo Canópia Global" class="max-w-full max-h-full rounded-md">
+                    <img src="https://i.ibb.co/mCtm8Tpb/ed71d4a4-798a-44d9-9d3d-8c37ca1eae00.jpg" alt="Logo Canópia Global" class="max-w-full max-h-full rounded-md">
                 </div>
             </div>
 
@@ -186,11 +181,80 @@
         </div>
     </footer>
 
+    <!-- SCRIPT DE INTERATIVIDADE E LEITURA DINÂMICA -->
     <script>
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('hidden');
         }
+
+        async function loadArticle() {
+            const params = new URLSearchParams(window.location.search);
+            const fileName = params.get('file');
+            const collection = params.get('type') || 'noticias'; // tipo padrão: noticias
+
+            const loading = document.getElementById('loading');
+            const container = document.getElementById('articleContainer');
+
+            if (!fileName) {
+                loading.innerHTML = `
+                    <i class="ph ph-warning-circle text-5xl text-[#8A151B] mb-3 block"></i>
+                    <p class="font-serif text-xl text-brand-dark font-bold">Conteúdo não especificado.</p>
+                    <a href="noticias.html" class="text-sm font-bold underline mt-2 block">Voltar para notícias</a>
+                `;
+                return;
+            }
+
+            try {
+                // Busca o arquivo JSON da publicação direto do repositório no GitHub
+                const response = await fetch(`https://raw.githubusercontent.com/PEDROTXAI-creator/CAN-PIO-CODIGOS/main/data/${collection}/${fileName}`);
+                
+                if (!response.ok) throw new Error('Artigo não encontrado');
+
+                const data = await response.json();
+
+                // Preenche os campos da página
+                document.title = `${data.title} - Canópia Global`;
+                document.getElementById('postTitle').innerText = data.title || 'Sem título';
+                document.getElementById('postSummary').innerText = data.summary || '';
+                
+                if (data.category) {
+                    document.getElementById('postCategory').innerText = data.category.toUpperCase();
+                } else {
+                    document.getElementById('postCategory').classList.add('hidden');
+                }
+
+                document.getElementById('postAuthor').innerText = data.author ? `Por ${data.author}` : '';
+                
+                if (data.date) {
+                    const dateObj = new Date(data.date);
+                    document.getElementById('postDate').innerText = dateObj.toLocaleDateString('pt-BR') + ' - ' + dateObj.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                }
+
+                if (data.image) {
+                    document.getElementById('postImage').src = data.image;
+                    document.getElementById('postFigure').classList.remove('hidden');
+                }
+
+                // Converte quebras de linha do corpo do texto em parágrafos HTML
+                const bodyText = data.body || '';
+                const paragraphs = bodyText.split('\n\n').map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
+                document.getElementById('postBody').innerHTML = paragraphs;
+
+                // Esconde o loading e mostra a matéria
+                loading.classList.add('hidden');
+                container.classList.remove('hidden');
+
+            } catch (err) {
+                loading.innerHTML = `
+                    <i class="ph ph-warning-circle text-5xl text-[#8A151B] mb-3 block"></i>
+                    <p class="font-serif text-xl text-brand-dark font-bold">Publicação não encontrada ou indisponível.</p>
+                    <a href="noticias.html" class="text-sm font-bold underline mt-2 block">Voltar para notícias</a>
+                `;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', loadArticle);
     </script>
 </body>
 </html>
