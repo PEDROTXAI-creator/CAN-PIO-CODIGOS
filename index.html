@@ -27,6 +27,9 @@
       }
     </script>
 
+    <!-- Script do Netlify Identity -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
     <!-- Ícones Phosphor -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
@@ -175,6 +178,19 @@
 
         </div>
     </footer>
+
+    <!-- Script de inicialização do Netlify Identity -->
+    <script>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+    </script>      
 
     <!-- SCRIPT DE CARREGAMENTO DINÂMICO (HOME) -->
     <script>
