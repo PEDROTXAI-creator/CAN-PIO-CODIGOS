@@ -48,16 +48,16 @@
         ::-webkit-scrollbar-track { background: #E4E4E4; }
         ::-webkit-scrollbar-thumb { background: #313B1D; border-radius: 4px; }
 
-/* Estilização e Quebra de Linha Inteligente para o conteúdo */
+/* Estilização para quebra inteligente: palavras normais descem inteiras, sem cortes feios e sem vazar */
         .article-content {
-            overflow-wrap: break-word;
-            word-break: normal; /* Impede que palavras normais sejam cortadas ao meio (como 'not' / 'icia') */
+            overflow-wrap: anywhere;
+            word-break: normal;
         }
 
         .article-content p {
             margin-bottom: 1.25rem;
             line-height: 1.8;
-            overflow-wrap: break-word;
+            overflow-wrap: anywhere;
             word-break: normal;
         }
         .article-content strong {
