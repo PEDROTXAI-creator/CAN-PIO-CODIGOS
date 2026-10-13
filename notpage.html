@@ -36,7 +36,7 @@
     <!-- Ícones Phosphor -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <style>
+<style>
         body {
             background-color: #E4E4E4;
             color: #1C1A17;
@@ -48,23 +48,41 @@
         ::-webkit-scrollbar-track { background: #E4E4E4; }
         ::-webkit-scrollbar-thumb { background: #313B1D; border-radius: 4px; }
 
-        /* Estilização para o conteúdo do artigo gerado pelo Markdown */
+        /* Estilização e Quebra de Linha Automática para o conteúdo */
+        .article-content {
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+
         .article-content p {
             margin-bottom: 1.25rem;
             line-height: 1.8;
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
+
         .article-content strong {
             color: #313B1D;
             font-weight: bold;
         }
+
         .article-content em {
             font-style: italic;
         }
+
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
         .article-content ul {
             list-style-type: disc;
             margin-left: 1.5rem;
             margin-bottom: 1.25rem;
         }
+
         .article-content ol {
             list-style-type: decimal;
             margin-left: 1.5rem;
@@ -202,7 +220,7 @@
     </footer>
 
     <!-- SCRIPT DE INTERATIVIDADE E LEITURA DINÂMICA -->
-    <script>
+<script>
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('hidden');
@@ -254,7 +272,13 @@
                     document.getElementById('postFigure').classList.remove('hidden');
                 }
 
-                // Converte o corpo do texto usando a biblioteca Marked.js (suporta negrito, itálico, parágrafos, etc.)
+                // Configuração essencial para ativar negrito, itálico e quebras de linha automáticas
+                marked.setOptions({
+                    breaks: true,
+                    gfm: true
+                });
+
+                // Converte o corpo do texto usando a biblioteca Marked.js
                 const bodyText = data.body || '';
                 document.getElementById('postBody').innerHTML = marked.parse(bodyText);
 
