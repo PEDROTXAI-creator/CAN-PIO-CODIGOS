@@ -48,23 +48,16 @@
         ::-webkit-scrollbar-track { background: #E4E4E4; }
         ::-webkit-scrollbar-thumb { background: #313B1D; border-radius: 4px; }
 
-/* Estilização definitiva: impede cortes em palavras comuns e desativa hifenização automática */
-        .article-content {
+.article-content {
             word-break: normal;
-            overflow-wrap: normal;
-            hyphens: none;
-            -webkit-hyphens: none;
-            -ms-hyphens: none;
+            overflow-wrap: break-word;
         }
 
         .article-content p {
             margin-bottom: 1.25rem;
             line-height: 1.8;
             word-break: normal;
-            overflow-wrap: normal;
-            hyphens: none;
-            -webkit-hyphens: none;
-            -ms-hyphens: none;
+            overflow-wrap: break-word;
         }
         .article-content strong {
             color: #313B1D;
