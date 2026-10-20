@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="bg-[#E4E4E4]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,10 +31,13 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
-        body {
+        html, body {
             background-color: #E4E4E4;
             color: #1C1A17;
             overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
         }
 
         /* Customização do Scrollbar */
@@ -43,7 +46,7 @@
         ::-webkit-scrollbar-thumb { background: #313B1D; border-radius: 4px; }
     </style>
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans antialiased min-h-screen flex flex-col bg-[#E4E4E4]">
 
     <!-- CABEÇALHO -->
     <header class="bg-brand-dark text-brand-light sticky top-0 z-50 shadow-lg">
@@ -60,14 +63,14 @@
             <!-- Navegação Desktop -->
             <nav class="hidden lg:flex items-center gap-6 font-sans text-sm font-medium">
                 <a href="index.html" class="hover:text-gray-300 transition-colors pb-1">Home</a>
-                <a href="sobre.html" class="hover:text-gray-300 transition-colors pb-1">Sobre Nós</a>
-                <a href="servicos.html" class="hover:text-gray-300 transition-colors pb-1 border-b-2 border-brand-light">Serviços</a>
+                <a href="sobre.html" class="hover:text-gray-300 transition-colors pb-1 border-b-2 border-brand-light">Sobre Nós</a>
+                <a href="servicos.html" class="hover:text-gray-300 transition-colors pb-1">Serviços</a>
                 <a href="noticias.html" class="hover:text-gray-300 transition-colors pb-1">Notícias</a>
                 <a href="artigos.html" class="hover:text-gray-300 transition-colors pb-1">Artigos</a>
                 <a href="podcast.html" class="hover:text-gray-300 transition-colors pb-1">Podcasts</a>
                 
-                <a href="https://forms.gle/exemplo" target="_blank" class="bg-[#8A151B] text-white px-5 py-2 font-bold rounded-sm hover:bg-[#6e1015] transition-colors shadow-md">
-                    Submeter Conteúdo
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7I8Kcb4lw_U7WyfIL37rBtTgXHL_lBx7etJz90x6ZywNkAA/viewform" target="_blank" class="bg-[#8A151B] text-white px-5 py-2 font-bold rounded-sm hover:bg-[#6e1015] transition-colors shadow-md">
+                    Submeter Trabalho
                 </a>
             </nav>
 
@@ -92,20 +95,34 @@
     <section class="bg-brand-dark text-brand-light py-16 md:py-24 px-4 text-center border-b-4 border-[#8A151B]">
         <div class="max-w-4xl mx-auto flex flex-col items-center">
             <div class="w-16 h-16 md:w-20 md:h-20 bg-white/10 rounded-full flex items-center justify-center mb-6 border border-brand-light/30">
-                <i class="ph ph-users-three text-3xl md:text-4xl text-brand-light"></i>
+                <i class="ph ph-globe-hemisphere-east text-3xl md:text-4xl text-brand-light"></i>
             </div>
             <h1 class="font-serif text-4xl md:text-6xl font-bold tracking-wide mb-4">
-                CARIAP
+                Canópia Global
             </h1>
             <p class="font-sans text-base md:text-xl text-brand-light/90 max-w-2xl font-normal leading-relaxed">
-                Centro Acadêmico de Relações Internacionais do Amapá — representação estudantil do curso de RI da UNIFAP.
+                Um projeto de extensão universitária criado por iniciativa dos estudantes do CARIAP.
             </p>
         </div>
     </section>
 
     <!-- CONTEÚDO PRINCIPAL -->
-    <main class="max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-16 space-y-12">
+    <main class="max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-16 space-y-12 flex-grow w-full">
         
+        <!-- Quem nós somos? -->
+        <section class="space-y-4">
+            <div class="flex items-center gap-3">
+                <i class="ph ph-info text-2xl text-brand-dark"></i>
+                <h2 class="font-serif text-2xl md:text-3xl font-bold text-brand-dark">Quem nós somos?</h2>
+            </div>
+            <div class="space-y-4 font-sans text-base md:text-lg text-brand-text leading-relaxed pl-1">
+                <p>A Canópia Global é um projeto de extensão universitária criado por iniciativa dos estudantes do Centro Acadêmico de Relações Internacionais do Amapá. Seu objetivo é oferecer um espaço de produção e circulação de conhecimento científico que aproxime a universidade da sociedade, estimulando a análise crítica das dinâmicas internacionais a partir do olhar do “meio do mundo”.</p>
+                <p>Assim como a canópia conecta árvores e espécies diversas, o jornal busca articular narrativas, perspectivas e análises múltiplas oriundas de nossa região. O simbolismo da copa das árvores, que se entrelaçam e formam uma rede integrada de proteção, simbiose, regulação e equilíbrio ambiental, inspira a proposta do jornal. Essa metáfora traduz a essência das Relações Internacionais: a governança, os vínculos e as interações entre acontecimentos, atores e espaços. Sugere, portanto, uma missão de compreensão da geopolítica e de promoção da diplomacia, destacando a interdependência e a cooperação internacional.</p>
+                <p>O jornal nasceu da percepção de que questões aparentemente específicas do Estado do Amapá — como fronteiras, migrações, meio ambiente, exploração mineral, tráfico humano, comércio, defesa nacional, direitos humanos e integração regional — possuem implicações globais e, por isso, devem ser analisadas sob a ótica das Relações Internacionais.</p>
+                <p>Incorporada pelo Centro Acadêmico do curso e estruturada em parceria com professores orientadores e outros colegiados, a iniciativa vai além de um veículo de notícias: a Canópia Global pretende fomentar a reflexão acadêmico-científica e contribuir para que estudantes e leitores desenvolvam uma leitura crítica e profunda sobre o papel do Amapá e da Amazônia no cenário internacional.</p>
+            </div>
+        </section>
+
         <!-- O que é o CARIAP? -->
         <section class="space-y-4">
             <div class="flex items-center gap-3">
@@ -143,17 +160,20 @@
             </ul>
         </section>
 
-        <!-- Fale com o CARIAP (Apenas Instagram) -->
+        <!-- Fale com o Canópia -->
         <section class="bg-white/60 border border-brand-dark/10 rounded-2xl p-6 md:p-8 shadow-sm space-y-6">
             <div>
-                <h3 class="font-serif text-2xl font-bold text-brand-dark mb-2">Fale com o CARIAP</h3>
+                <h3 class="font-serif text-2xl font-bold text-brand-dark mb-2">Fale com o Canópia</h3>
                 <p class="font-sans text-sm md:text-base text-brand-text/80">
-                    Quer participar das atividades, propor projetos ou tirar dúvidas? Entre em contato através do nosso perfil oficial.
+                    Quer participar das atividades, propor projetos ou tirar dúvidas? Entre em contato através de nossos canais oficiais.
                 </p>
             </div>
             <div class="flex flex-wrap items-center gap-4">
-                <a href="https://instagram.com" target="_blank" class="bg-brand-dark text-brand-light border border-brand-dark/30 px-6 py-2.5 rounded-md font-sans text-sm font-bold flex items-center gap-2 hover:bg-brand-dark/90 transition-colors shadow">
+                <a href="https://www.instagram.com/canopiaglobal.ofc/" target="_blank" class="bg-brand-dark text-brand-light border border-brand-dark/30 px-6 py-2.5 rounded-md font-sans text-sm font-bold flex items-center gap-2 hover:bg-brand-dark/90 transition-colors shadow">
                     <i class="ph ph-instagram-logo text-lg"></i> Instagram
+                </a>
+                <a href="https://wa.me/5596991499585" target="_blank" class="bg-[#25D366] text-white border border-[#25D366]/30 px-6 py-2.5 rounded-md font-sans text-sm font-bold flex items-center gap-2 hover:bg-[#20ba5a] transition-colors shadow">
+                    <i class="ph ph-whatsapp-logo text-lg"></i> WhatsApp
                 </a>
             </div>
         </section>
@@ -161,15 +181,15 @@
     </main>
 
     <!-- RODAPÉ -->
-    <footer class="bg-brand-dark text-brand-light py-12 px-6 border-t border-brand-light/10">
+    <footer class="bg-brand-dark text-brand-light py-12 px-6 border-t border-brand-light/10 mt-auto">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 items-center">
             
             <div class="text-center md:text-left">
                 <h3 class="font-serif text-xl font-bold mb-4">Serviços</h3>
                 <ul class="space-y-2 font-sans text-sm text-brand-light/80">
                     <li class="cursor-default">Publicação de Artigos</li>
-                    <li class="cursor-default">Mural de Vagas</li>
-                    <li class="cursor-default">Eventos Acadêmicos</li>
+                    <li class="cursor-default">Produção e Publicação de Notícias</li>
+                    <li class="cursor-default">Produção de Podcasts</li>
                     <li class="cursor-default">Suporte ao Autor</li>
                 </ul>
             </div>
@@ -183,14 +203,14 @@
             <div class="text-center md:text-right">
                 <h3 class="font-serif text-xl font-bold mb-4">Contatos</h3>
                 <div class="flex flex-col items-center md:items-end space-y-3 font-sans text-sm text-brand-light/80">
-                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-tiktok-logo text-xl"></i> @canopiaglobal</a>
-                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-instagram-logo text-xl"></i> /canopiaglobal</a>
-                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-x-logo text-xl"></i> @canopiaglobal</a>
-                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-facebook-logo text-xl"></i> /canopiaglobal</a>
-                    <a href="#" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-whatsapp-logo text-xl"></i> (00) 00000-0000</a>
+                    <span class="flex items-center gap-2">
+                        <i class="ph ph-envelope text-xl"></i> jornal.universitario.ri@gmail.com
+                    </span>
+                    <a href="https://www.instagram.com/canopiaglobal.ofc/" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-instagram-logo text-xl"></i> @canopiaglobal.ofc</a>
+                    <a href="https://wa.me/5596991499585?" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-whatsapp-logo text-xl"></i> (96) 99149-9585</a>
+                    <a href="https://wa.me/5596984208841?" class="flex items-center gap-2 hover:text-brand-light transition-colors"><i class="ph ph-whatsapp-logo text-xl"></i> (96) 98420-8841</a>
                 </div>
             </div>
-
         </div>
     </footer>
 
